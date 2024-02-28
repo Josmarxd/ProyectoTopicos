@@ -42,38 +42,32 @@ public class CarHup extends JFrame implements ActionListener{
        norte();
     }
     private void norte() {
-        norte.setLayout(new BoxLayout(norte, BoxLayout.Y_AXIS));
+        norte.setLayout(null);
         norte.setPreferredSize(new Dimension(800, 200));
         norte.setBackground(Color.black);
 
         nombreCarHup.setFont(new Font("Times New Roman", Font.BOLD, 35));
-        nombreCarHup.setAlignmentX(Component.CENTER_ALIGNMENT);
         nombreCarHup.setForeground(Color.WHITE);
         // Agregar espacio entre "CARHUP" y el logo
-        norte.add(Box.createVerticalStrut(10));
+        nombreCarHup.setBounds(500, 60, 200, 50);
+        inicioButton.setBounds(450,85,70,30);
+        loginButton.setBounds(700, 85, 70, 30);
+        
 
         // Agregar "CARHUP" al panel
         norte.add(nombreCarHup);
+        norte.add(inicioButton);
+        norte.add(loginButton);
 
         // Configuración del logo
-        ImageIcon logoimg = new ImageIcon("carhuplogo.jpg");
+        ImageIcon logoimg = new ImageIcon("Imagenes/carhuplogo.jpg");
         logo.setIcon(new ImageIcon(logoimg.getImage().getScaledInstance(140, 55, Image.SCALE_SMOOTH)));
         logo.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Agregar el logo al panel
         norte.add(logo);
 
-        JPanel botonesPanel = new JPanel(new FlowLayout()); // Panel para los botones
-        botonesPanel.setBackground(Color.BLACK); 
-        botonesPanel.add(inicioButton);
-        botonesPanel.add(buscarButton);
-        botonesPanel.add(loginButton);
-        botonesPanel.add(configuracionButton);
-
-        logo.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        norte.add(nombreCarHup);
-        norte.add(botonesPanel);
+       
         norte.add(logo);
 
         this.getContentPane().add(norte, BorderLayout.NORTH);
@@ -90,7 +84,7 @@ public class CarHup extends JFrame implements ActionListener{
         // Implementar funcionalidad de búsqueda de conductor
     }
 
-    private void historial() {
+    private void configuracion() {
         // Implementar funcionalidad de historial
     }
 
@@ -102,7 +96,7 @@ public class CarHup extends JFrame implements ActionListener{
         if (e.getSource() == buscarButton)
             buscarConductor();
         else if (e.getSource() == configuracionButton)
-            historial();
+            configuracion();
         else if (e.getSource() == inicioButton)
             inicio();
         else if (e.getSource() == loginButton)
