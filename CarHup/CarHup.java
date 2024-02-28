@@ -13,18 +13,11 @@ public class CarHup extends JFrame implements ActionListener{
     JLabel nombreCarHup;
     JLabel logo;
 
-     //Buscar Conductor
-    JButton buscarCButton;
-
-
-    //Historial Conductor
-    JButton historialButton;
-
-    //INICIO;
-    JButton iniciButton;
-
-    //INICIAR SECION;
+    //botones nena
+    JButton inicioButton;
+    JButton buscarButton;
     JButton loginButton;
+    JButton configuracionButton;
       
 
     public CarHup(){
@@ -33,6 +26,10 @@ public class CarHup extends JFrame implements ActionListener{
         nombreU = new JLabel("Hola"+ " Josmar");
         nombreCarHup = new JLabel("CARHUP");
         logo = new JLabel();
+        inicioButton = new JButton("Inicio");
+        buscarButton = new JButton("Buscar");
+        loginButton = new JButton("Login");
+        configuracionButton = new JButton("Configuración");
         init();
     }
 
@@ -48,7 +45,7 @@ public class CarHup extends JFrame implements ActionListener{
     private void norte(){
         //Configuracion Panel
         norte.setLayout(null); //Para desbloquear las etiquetas detro del panel
-        norte.setPreferredSize(new Dimension(500, 170)); //establecer la dimension del panel
+        norte.setPreferredSize(new Dimension(900, 170)); //establecer la dimension del panel
         norte.setBackground(Color.CYAN);
 
 
@@ -66,48 +63,52 @@ public class CarHup extends JFrame implements ActionListener{
         nombreCarHup.setBounds(600, 50,150, 35);
         nombreCarHup.setFont(new Font("Times New Roman",Font.BOLD,35));
 
-        //Login
+        // Posicionamiento de los botones
+        inicioButton.setBounds(10, 10, 100, 30);
+        buscarButton.setBounds(120, 10, 100, 30);
+        loginButton.setBounds(230, 10, 100, 30);
+        configuracionButton.setBounds(340, 10, 150, 30);
 
-        
-        //buscar Conductor
+        norte.add(nombreU, BorderLayout.CENTER);
+        norte.add(nombreCarHup);
+        norte.add(logo);
+        norte.add(inicioButton);
+        norte.add(buscarButton);
+        norte.add(loginButton);
+        norte.add(configuracionButton);
 
-        
-        //Historial
-        
-
-        norte.add(nombreU,BorderLayout.CENTER); //añadir Etiqueta al panel
-        norte.add(nombreCarHup); //añadir nombre de la app
-        norte.add(logo); //añadir imagen
-        this.getContentPane().add(norte,BorderLayout.NORTH); // colocar panel al norte      
+        this.getContentPane().add(norte, BorderLayout.NORTH);
     }
 
-    private void login(){
+    private void login() {
+        // Implementar funcionalidad de login
     }
 
-
-    private void buscarConductor(){
-
+    private void buscarConductor() {
+        // Implementar funcionalidad de búsqueda de conductor
     }
 
-    private void historial(){
-
+    private void historial() {
+        // Implementar funcionalidad de historial
     }
 
-    private void inicio(){
-
+    private void inicio() {
+        // Implementar funcionalidad de inicio
     }
-
-    @Override
+    
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == buscarCButton)
-              buscarConductor();
-        else if(e.getSource() == historialButton)
-              historial();
-        else if(e.getSource() == iniciButton)
+        if (e.getSource() == buscarButton)
+            buscarConductor();
+        else if (e.getSource() == configuracionButton)
+            historial();
+        else if (e.getSource() == inicioButton)
             inicio();
-        else if(e.getSource() == loginButton)
+        else if (e.getSource() == loginButton)
             login();
+        // Agregar acciones para el botón de configuración si es necesario
     }
+
+   
 
 
     public static void main(String[] args) {
