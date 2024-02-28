@@ -56,7 +56,7 @@ public class CarHup extends JFrame implements ActionListener{
         norte.add(nombreCarHup);
 
         // Configuración del logo
-        ImageIcon logoimg = new ImageIcon("src/Imagenes/CarHup.jpg");
+        ImageIcon logoimg = new ImageIcon("carhuplogo.jpg");
         logo.setIcon(new ImageIcon(logoimg.getImage().getScaledInstance(140, 55, Image.SCALE_SMOOTH)));
         logo.setAlignmentX(Component.CENTER_ALIGNMENT);
 
