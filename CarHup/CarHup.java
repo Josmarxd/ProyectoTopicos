@@ -49,7 +49,7 @@ public class CarHup extends JFrame implements ActionListener{
         nombreCarHup.setFont(new Font("Times New Roman", Font.BOLD, 35));
         nombreCarHup.setForeground(Color.WHITE);
         // Agregar espacio entre "CARHUP" y el logo
-        nombreCarHup.setBounds(570, 10, 200, 30);
+        nombreCarHup.setBounds(570, 20, 200, 30);
         inicioButton.setBounds(450,150,70,30);
         loginButton.setBounds(540, 150, 70, 30);
         buscarButton.setBounds(630, 150, 80, 30);
@@ -64,7 +64,7 @@ public class CarHup extends JFrame implements ActionListener{
 
         // Configuración del logo
         ImageIcon logoimg = new ImageIcon("CarHup/Imagenes/Loficial.png");
-        logo.setIcon(new ImageIcon(logoimg.getImage().getScaledInstance(100, 110, Image.SCALE_SMOOTH)));
+        logo.setIcon(new ImageIcon(logoimg.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
         logo.setBounds(600, 0, 100, 250);
 
         // Agregar el logo al panel
