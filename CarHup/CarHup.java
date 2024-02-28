@@ -49,6 +49,19 @@ public class CarHup extends JFrame implements ActionListener{
         nombreCarHup.setFont(new Font("Times New Roman", Font.BOLD, 35));
         nombreCarHup.setAlignmentX(Component.CENTER_ALIGNMENT);
         nombreCarHup.setForeground(Color.WHITE);
+        // Agregar espacio entre "CARHUP" y el logo
+        norte.add(Box.createVerticalStrut(10));
+
+        // Agregar "CARHUP" al panel
+        norte.add(nombreCarHup);
+
+        // Configuración del logo
+        ImageIcon logoimg = new ImageIcon("src/Imagenes/CarHup.jpg");
+        logo.setIcon(new ImageIcon(logoimg.getImage().getScaledInstance(140, 55, Image.SCALE_SMOOTH)));
+        logo.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        // Agregar el logo al panel
+        norte.add(logo);
 
         JPanel botonesPanel = new JPanel(new FlowLayout()); // Panel para los botones
         botonesPanel.setBackground(Color.BLACK); 
