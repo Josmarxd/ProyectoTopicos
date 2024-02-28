@@ -41,44 +41,33 @@ public class CarHup extends JFrame implements ActionListener{
        this.setLayout(new BorderLayout());
        norte();
     }
+    private void norte() {
+        norte.setLayout(new BoxLayout(norte, BoxLayout.Y_AXIS));
+        norte.setPreferredSize(new Dimension(800, 200));
+        norte.setBackground(Color.black);
 
-    private void norte(){
-        //Configuracion Panel
-        norte.setLayout(null); //Para desbloquear las etiquetas detro del panel
-        norte.setPreferredSize(new Dimension(900, 170)); //establecer la dimension del panel
-        norte.setBackground(Color.CYAN);
+        nombreCarHup.setFont(new Font("Times New Roman", Font.BOLD, 35));
+        nombreCarHup.setAlignmentX(Component.CENTER_ALIGNMENT);
+        nombreCarHup.setForeground(Color.WHITE);
 
+        JPanel botonesPanel = new JPanel(new FlowLayout()); // Panel para los botones
+        botonesPanel.setBackground(Color.BLACK); 
+        botonesPanel.add(inicioButton);
+        botonesPanel.add(buscarButton);
+        botonesPanel.add(loginButton);
+        botonesPanel.add(configuracionButton);
 
-       //Configurarcion etiqueta Nombre Usuario Inicio
-        nombreU.setBounds(60, 130, 200, 30); //dimencion del etiqueta nombre
-        nombreU.setFont(new Font("Times New Roman",Font.BOLD, 35)); //Personalisar Etiqueta Nombre
+        logo.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        //Configuracion logo
-        ImageIcon logoimg = new ImageIcon("src/Imagenes/CarHup.jpg");
-        logo.setIcon(new ImageIcon(logoimg.getImage().getScaledInstance(140, 55,Image.SCALE_SMOOTH))); //modificar y alavez añadir
-        logo.setBounds(800, 100, 140, 55); //tañano de la etiqueta imagen
-
-
-        //configuracion nombreApp
-        nombreCarHup.setBounds(600, 50,150, 35);
-        nombreCarHup.setFont(new Font("Times New Roman",Font.BOLD,35));
-
-        // Posicionamiento de los botones
-        inicioButton.setBounds(10, 10, 100, 30);
-        buscarButton.setBounds(120, 10, 100, 30);
-        loginButton.setBounds(230, 10, 100, 30);
-        configuracionButton.setBounds(340, 10, 150, 30);
-
-        norte.add(nombreU, BorderLayout.CENTER);
         norte.add(nombreCarHup);
+        norte.add(botonesPanel);
         norte.add(logo);
-        norte.add(inicioButton);
-        norte.add(buscarButton);
-        norte.add(loginButton);
-        norte.add(configuracionButton);
 
         this.getContentPane().add(norte, BorderLayout.NORTH);
     }
+
+
+
 
     private void login() {
         // Implementar funcionalidad de login
