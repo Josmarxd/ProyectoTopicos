@@ -123,11 +123,11 @@ public class CarHup extends JFrame implements ActionListener{
         } else if (e.getSource() == loginButton) {
             login();
         } else if (e.getSource() == modoOscuroButton) {
-            // Lógica para el botón "Modo Oscuro"
-            // Puedes implementar la lógica para cambiar el modo oscuro aquí
+            
+            
         } else if (e.getSource() == miInformacionButton) {
-            // Lógica para el botón "Mi Información"
-            // Puedes implementar la lógica para mostrar la información aquí
+            
+            
         }
     }
 
