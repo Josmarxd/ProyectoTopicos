@@ -1,12 +1,13 @@
 package CarHup;
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
-
 public class CarHup extends JFrame implements ActionListener{
 
     JPanel norte;
+    JPanel sur; 
+    boolean panelSurVisible = false;
+    
 
     //PANEL NORTE
     JLabel nombreU;
@@ -18,10 +19,14 @@ public class CarHup extends JFrame implements ActionListener{
     JButton buscarButton;
     JButton loginButton;
     JButton configuracionButton;
+    JButton modoOscuroButton;
+    JButton miInformacionButton;
+
       
 
     public CarHup(){
         norte = new JPanel();
+        sur = new JPanel(); 
 
         nombreU = new JLabel("Hola"+ " Josmar");
         nombreCarHup = new JLabel("CARHUP");
@@ -30,7 +35,12 @@ public class CarHup extends JFrame implements ActionListener{
         buscarButton = new JButton("Buscar");
         loginButton = new JButton("Login");
         configuracionButton = new JButton("Configuración");
+        modoOscuroButton = new JButton("Modo Oscuro");
+        miInformacionButton = new JButton("Mi Información");
+        configuracionButton.addActionListener(this); 
+        
         init();
+        
     }
 
 
@@ -39,13 +49,14 @@ public class CarHup extends JFrame implements ActionListener{
        this.setSize(400,400);
        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
        this.setLayout(new BorderLayout());
+       sur.setVisible(false);
+
        norte();
     }
     private void norte() {
         norte.setLayout(null);
         norte.setPreferredSize(new Dimension(800, 200));
         norte.setBackground(Color.black);
-
         nombreCarHup.setFont(new Font("Times New Roman", Font.BOLD, 35));
         nombreCarHup.setForeground(Color.WHITE);
         // Agregar espacio entre "CARHUP" y el logo
@@ -54,6 +65,8 @@ public class CarHup extends JFrame implements ActionListener{
         loginButton.setBounds(540, 150, 70, 30);
         buscarButton.setBounds(630, 150, 80, 30);
         configuracionButton.setBounds(720, 150, 120, 30);
+        modoOscuroButton.setBounds(900, 0, 120, 30);
+        miInformacionButton.setBounds(900, 40, 120, 30);
 
         // Agregar "CARHUP" al panel
         norte.add(nombreCarHup);
@@ -61,7 +74,12 @@ public class CarHup extends JFrame implements ActionListener{
         norte.add(loginButton);
         norte.add(buscarButton);
         norte.add(configuracionButton);
-
+        sur.setLayout(null);
+        sur.setBackground(Color.black);
+        sur.setPreferredSize(new Dimension(800, 100));
+        sur.add(modoOscuroButton);
+        sur.add(miInformacionButton);
+        sur.setVisible(false);
         // Configuración del logo
         ImageIcon logoimg = new ImageIcon("CarHup/Imagenes/Loficial.png");
         logo.setIcon(new ImageIcon(logoimg.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
@@ -71,11 +89,8 @@ public class CarHup extends JFrame implements ActionListener{
         norte.add(logo);
 
         this.getContentPane().add(norte, BorderLayout.NORTH);
+        this.getContentPane().add(sur, BorderLayout.SOUTH);
     }
-
-
-
-
     private void login() {
         // Implementar funcionalidad de login
     }
@@ -85,7 +100,8 @@ public class CarHup extends JFrame implements ActionListener{
     }
 
     private void configuracion() {
-        // Implementar funcionalidad de historial
+        panelSurVisible = !panelSurVisible;
+        sur.setVisible(panelSurVisible);
     }
 
     private void inicio() {
@@ -93,16 +109,24 @@ public class CarHup extends JFrame implements ActionListener{
     }
     
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == buscarButton)
-            buscarConductor();
-        else if (e.getSource() == configuracionButton)
+        if (e.getSource() == configuracionButton) {
             configuracion();
-        else if (e.getSource() == inicioButton)
+        } else if (e.getSource() == buscarButton) {
+            buscarConductor();
+        } else if (e.getSource() == inicioButton) {
             inicio();
-        else if (e.getSource() == loginButton)
+        } else if (e.getSource() == loginButton) {
             login();
-        // Agregar acciones para el botón de configuración si es necesario
+        } else if (e.getSource() == modoOscuroButton) {
+            // Lógica para el botón "Modo Oscuro"
+            // Puedes implementar la lógica para cambiar el modo oscuro aquí
+        } else if (e.getSource() == miInformacionButton) {
+            // Lógica para el botón "Mi Información"
+            // Puedes implementar la lógica para mostrar la información aquí
+        }
     }
+
+
 
    
 
