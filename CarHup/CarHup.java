@@ -5,7 +5,6 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class CarHup extends JFrame implements ActionListener{
-
     JPanel norte;
 
     //PANEL NORTE
@@ -94,7 +93,7 @@ public class CarHup extends JFrame implements ActionListener{
     }
 
     private void inicio(){
-
+     System.out.println("Soy gey koyoc");
     }
 
     @Override
