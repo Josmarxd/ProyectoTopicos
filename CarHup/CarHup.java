@@ -13,6 +13,7 @@ public class CarHup extends JFrame implements ActionListener{
     JLabel nombreU;
     JLabel nombreCarHup;
     JLabel logo;
+    
 
     //botones nena
     JButton inicioButton;
@@ -27,6 +28,7 @@ public class CarHup extends JFrame implements ActionListener{
     public CarHup(){
         norte = new JPanel();
         sur = new JPanel(); 
+        
 
         nombreU = new JLabel("Hola"+ " Josmar");
         nombreCarHup = new JLabel("CARHUP");
@@ -49,6 +51,8 @@ public class CarHup extends JFrame implements ActionListener{
        this.setSize(400,400);
        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
        this.setLayout(new BorderLayout());
+       this.getContentPane().setBackground(new Color(255, 218, 185));
+
        sur.setVisible(false);
 
        norte();
@@ -67,6 +71,7 @@ public class CarHup extends JFrame implements ActionListener{
         configuracionButton.setBounds(720, 150, 120, 30);
         modoOscuroButton.setBounds(900, 0, 120, 30);
         miInformacionButton.setBounds(900, 40, 120, 30);
+        
 
         // Agregar "CARHUP" al panel
         norte.add(nombreCarHup);
