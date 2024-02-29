@@ -93,7 +93,7 @@ public class CarHup extends JFrame implements ActionListener{
     }
 
     private void inicio(){
-     System.out.println("Soy gey koyoc");
+     System.out.println("A JOSMAR LE GUSTAN LOS NEGROS");
     }
 
     @Override
