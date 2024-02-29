@@ -80,7 +80,7 @@ public class CarHup extends JFrame implements ActionListener{
         norte.add(buscarButton);
         norte.add(configuracionButton);
         sur.setLayout(null);
-        sur.setBackground(Color.black);
+        sur.setBackground(new Color(255, 218, 185));
         sur.setPreferredSize(new Dimension(800, 100));
         sur.add(modoOscuroButton);
         sur.add(miInformacionButton);
