@@ -3,7 +3,6 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 public class CarHup extends JFrame implements ActionListener{
-
     JPanel norte;
     JPanel sur; 
     boolean panelSurVisible = false;
@@ -112,7 +111,16 @@ public class CarHup extends JFrame implements ActionListener{
     private void inicio() {
         // Implementar funcionalidad de inicio
     }
+<<<<<<< HEAD
     
+=======
+
+    private void inicio(){
+     System.out.println("A JOSMAR LE GUSTAN LOS NEGROS");
+    }
+
+    @Override
+>>>>>>> bce1a9d819a55a72b087bfcbd69346e802abf00d
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == configuracionButton) {
             configuracion();
