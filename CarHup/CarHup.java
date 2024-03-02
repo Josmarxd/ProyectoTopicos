@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 public class CarHup extends JFrame implements ActionListener{
-    JDialog ventanaLogin;
+    JPanel loginNorte;
     JDialog ventana2;
     JPanel norte;
     ImageIcon logoVna;
@@ -25,7 +25,7 @@ public class CarHup extends JFrame implements ActionListener{
       
 
     public CarHup(){
-        ventanaLogin= new JDialog();
+        loginNorte = new JPanel();
         ventana2 = new JDialog(this, "VENTANA 2",true);
 
         norte = new JPanel();
@@ -64,6 +64,7 @@ public class CarHup extends JFrame implements ActionListener{
     modoOscuroButton.addActionListener(this);
     miInformacionButton.addActionListener(this);
     }
+
     private void norte() {
         norte.setLayout(null);
         norte.setPreferredSize(new Dimension(800, 200));
@@ -83,8 +84,7 @@ public class CarHup extends JFrame implements ActionListener{
         norte.add(buscarButton);
         norte.add(configuracionButton);
         // Configuración del logo
-        ImageIcon logoimg = new ImageIcon("CarHup/Imagenes/Loficial.png");
-        logo.setIcon(new ImageIcon(logoimg.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
+        logo.setIcon(new ImageIcon(logoVna.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
         logo.setBounds(600, 0, 100, 250);
         // Agregar el logo al panel
         norte.add(logo);
@@ -94,11 +94,57 @@ public class CarHup extends JFrame implements ActionListener{
 
     private void login() {
         ventana2.setVisible(true);
-        ventana2.setSize(400,550);
+        ventana2.setSize(400,500);
         ventana2.setLocationRelativeTo(null);
-        ventana2.setTitle("Iniciar secion o Crear Cuenta");
+        ventana2.setTitle("Iniciar sesion o Crear Cuenta");
         ventana2.setIconImage(logoVna.getImage());
-        add(ventana2);
+        ventana2.setLayout(new BorderLayout());
+        
+        loginNorte.setLayout(null);
+        loginNorte.setBackground(Color.BLACK);
+        loginNorte.setPreferredSize(new Dimension(900,140));
+
+        JLabel inicioCrear = new JLabel("¿Eres nuevo o ya tienes una cuenta?");
+         inicioCrear.setFont(new Font("Times New Roman", Font.BOLD, 23));
+         inicioCrear.setBounds(10,14,400,100);
+         inicioCrear.setForeground(Color.WHITE);
+
+         JLabel loginImagen = new JLabel();
+         loginImagen.setIcon(new ImageIcon(logoVna.getImage().getScaledInstance(60, 60,Image.SCALE_SMOOTH)));
+         loginImagen.setBounds(150,0, 200, 100);
+
+
+         JButton iniciarSesionButton = new JButton("Iniciar sesion");
+         JButton crearCuentaButton = new JButton("Crear Cuenta");
+         JButton crearCtaConductor = new JButton("Crear Cuenta conductor");
+ 
+         iniciarSesionButton.addActionListener(e -> iniciarSesion());
+         crearCuentaButton.addActionListener(e -> crearCuenta());
+         crearCtaConductor.addActionListener(e -> crearCuentaConductor());
+
+        iniciarSesionButton.setBounds(50,100,120,20);
+        crearCuentaButton.setBounds(50,100,120,20);
+
+        
+        loginNorte.add(iniciarSesionButton);
+        loginNorte.add(crearCuentaButton);
+        loginNorte.add(inicioCrear);
+        loginNorte.add(loginImagen);
+        ventana2.getContentPane().add(loginNorte,BorderLayout.NORTH);
+        this.add(ventana2);
+        
+    }
+
+    private void iniciarSesion(){
+       //Josmar
+    }
+
+    private void crearCuenta(){
+      //Josmar
+    }
+
+    private void crearCuentaConductor(){
+        //Josmar
     }
 
     private void buscarConductor() {
