@@ -113,10 +113,6 @@ public class CarHup extends JFrame implements ActionListener{
     }
 
 
-    private void inicio(){
-     System.out.println("A JOSMAR LE GUSTAN LOS NEGROS");
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == configuracionButton) {
@@ -129,18 +125,11 @@ public class CarHup extends JFrame implements ActionListener{
             login();
         } else if (e.getSource() == modoOscuroButton) {
             
-            
         } else if (e.getSource() == miInformacionButton) {
             
             
         }
     }
-
-
-
-   
-
-
     public static void main(String[] args) {
         CarHup car = new CarHup();
     } 
