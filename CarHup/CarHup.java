@@ -93,9 +93,6 @@ public class CarHup extends JFrame implements ActionListener{
         
     }
 
-  
-
-
     private void inicio(){
      System.out.println("A KOYOC LE GUSTAN LOS NEGROS");
     }
@@ -111,7 +108,6 @@ public class CarHup extends JFrame implements ActionListener{
         } else if (e.getSource() == loginButton) {
             login();
         } else if (e.getSource() == modoOscuroButton) {
-            
             
         } else if (e.getSource() == miInformacionButton) {
             
