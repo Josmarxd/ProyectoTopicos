@@ -164,7 +164,7 @@ public class CarHup extends JFrame implements ActionListener{
     }
 
     private void inicio(){
-     System.out.println("A KOYOC LE GUSTAN LOS NEGROS");
+     System.out.println();
     }
 
     @Override
