@@ -107,7 +107,7 @@ public class CarHup extends JFrame implements ActionListener{
         panelSurVisible = !panelSurVisible;
         sur.setVisible(panelSurVisible);
     }
-
+jnnj
     private void inicio() {
         // Implementar funcionalidad de inicio
     }
