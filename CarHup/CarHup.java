@@ -3,10 +3,15 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 public class CarHup extends JFrame implements ActionListener{
+
+    //Josmar
     JPanel loginNorte;
     JDialog ventana2;
     JPanel norte;
     ImageIcon logoVna;
+
+    //Koyoc
+    JPanel inicioP;
 
     //PANEL NORTE
     JLabel nombreU;
@@ -27,6 +32,7 @@ public class CarHup extends JFrame implements ActionListener{
     public CarHup(){
         loginNorte = new JPanel();
         ventana2 = new JDialog(this, "VENTANA 2",true);
+        inicioP = new JPanel();
 
         norte = new JPanel();
         nombreU = new JLabel("Hola"+ " Josmar");
@@ -49,12 +55,12 @@ public class CarHup extends JFrame implements ActionListener{
        this.setSize(900,900);
        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
        this.setLayout(new BorderLayout());
-       this.getContentPane().setBackground(new Color(255, 218, 185));
        this.setLocationRelativeTo(null);
        this.setTitle("CARHUP");
        this.setIconImage(logoVna.getImage());
 
        norte();
+       inicio();
 
        // Registra ActionListener para los botones
     inicioButton.addActionListener(this);
@@ -123,7 +129,11 @@ public class CarHup extends JFrame implements ActionListener{
          crearCtaConductor.addActionListener(e -> crearCuentaConductor());
 
         iniciarSesionButton.setBounds(50,100,120,20);
-        crearCuentaButton.setBounds(50,100,120,20);
+        crearCuentaButton.setBounds(200,100,120,20);
+
+
+        JPanel loginCenterP = new JPanel();
+        loginCenterP.setBackground(new Color(30,30,30));
 
         
         loginNorte.add(iniciarSesionButton);
@@ -131,6 +141,7 @@ public class CarHup extends JFrame implements ActionListener{
         loginNorte.add(inicioCrear);
         loginNorte.add(loginImagen);
         ventana2.getContentPane().add(loginNorte,BorderLayout.NORTH);
+        ventana2.getContentPane().add(loginCenterP);
         this.add(ventana2);
         
     }
@@ -164,7 +175,8 @@ public class CarHup extends JFrame implements ActionListener{
     }
 
     private void inicio(){
-     System.out.println("A KOYOC LE GUSTAN LOS NEGROS");
+        inicioP.setBackground(new Color(30,30,30));
+        this.getContentPane().add(inicioP);
     }
 
     @Override
