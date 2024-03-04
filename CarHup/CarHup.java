@@ -140,9 +140,10 @@ public class CarHup extends JFrame implements ActionListener{
         loginCenterP.setLayout(null);
         loginCenterP.setPreferredSize(new Dimension(900,900));
 
-        iniciarSesionButton.addActionListener(e -> iniciarSesion(loginCenterP));
+        
         crearCuentaButton.addActionListener(e -> crearCuenta(loginCenterP));
- 
+        iniciarSesionButton.addActionListener(e -> iniciarSesion(loginCenterP));
+
         loginNorte.add(iniciarSesionButton);
         loginNorte.add(crearCuentaButton);
         loginNorte.add(inicioCrear);
@@ -151,9 +152,58 @@ public class CarHup extends JFrame implements ActionListener{
         ventana2.getContentPane().setBackground(new Color(30,30,30));
     }
 
-    private void iniciarSesion(JPanel loginCenterP){
-       //Josmar
+    private void iniciarSesion(JPanel loginCenterP) {
+        loginCenterP.removeAll();
+        
+        JLabel iniciarSecion = new JLabel("Inicia sesion");
+        iniciarSecion.setFont(new Font("Times New Roman", Font.BOLD, 20));
+        iniciarSecion.setForeground(Color.WHITE);
+        iniciarSecion.setBounds(20, 10, 200, 30);
+        loginCenterP.add(iniciarSecion);
+
+        JLabel etiquetaNombreUsuario = new JLabel("Nombre de Usuario:");
+        JTextField campoNombreUsuario = new JTextField();
+    
+        JLabel etiquetaContrasena = new JLabel("Contraseña:");
+        JPasswordField campoContrasena = new JPasswordField();
+
+        Font fuenteEtiqueta = new Font("Times New Roman", Font.BOLD, 14);
+        Color colorTexto = Color.WHITE;
+
+        etiquetaContrasena.setFont(fuenteEtiqueta);
+        etiquetaContrasena.setForeground(colorTexto);
+
+        etiquetaNombreUsuario.setFont(fuenteEtiqueta);
+        etiquetaNombreUsuario.setForeground(colorTexto);
+
+
+    
+        // Botón de inicio de sesión
+        JButton botonIniciarSesion = new JButton("Iniciar Sesión");
+        botonIniciarSesion.addActionListener(e -> iniciarDatos());
+    
+        
+        etiquetaNombreUsuario.setBounds(20, 45, 150, 25);
+        campoNombreUsuario.setBounds(190, 45, 150, 25);
+    
+        etiquetaContrasena.setBounds(20, 80, 150, 25);
+        campoContrasena.setBounds(190, 80, 150, 25);
+    
+        botonIniciarSesion.setBounds(20, 120, 300, 25);
+    
+        
+        loginCenterP.add(etiquetaNombreUsuario);
+        loginCenterP.add(campoNombreUsuario);
+        loginCenterP.add(etiquetaContrasena);
+        loginCenterP.add(campoContrasena);
+        loginCenterP.add(botonIniciarSesion);
+
+        ventana2.getContentPane().add(loginCenterP, BorderLayout.CENTER);
+        ventana2.revalidate();
+        ventana2.repaint();
     }
+    
+    
 
    private void crearCuenta(JPanel loginCenterP) {
     loginCenterP.removeAll();
@@ -204,7 +254,7 @@ public class CarHup extends JFrame implements ActionListener{
     nombreDeUsuario.setFont(fuenteEtiqueta);
     nombreDeUsuario.setForeground(colorTexto);
 
-    crearCtaConductor.addActionListener(e -> crearCuentaConductor());
+    crearCtaConductor.addActionListener(e -> crearCuentaConductor(loginCenterP));
     crearButton.addActionListener(e -> guardarDatos());
 
     // Posiciones de las etiquetas y componentes
@@ -246,13 +296,94 @@ public class CarHup extends JFrame implements ActionListener{
     }
 
     private void guardarDatos(){
+     // Logica para guardar los datos
+    }
 
+
+    private void iniciarDatos(){
+    //Logica para iniciar session
     }
     
 
-    private void crearCuentaConductor(){
-        //Josmar
+    private void crearCuentaConductor(JPanel loginCenterP) {
+        loginCenterP.removeAll();  // Limpiar el panel existente
+    
+        // Etiqueta de agradecimiento
+        JLabel graciasLabel = new JLabel("<html>¡GRACIAS por unirte!<br>Ahora necesitamos más información:</html>");
+        graciasLabel.setFont(new Font("Times New Roman", Font.BOLD, 16));
+        graciasLabel.setForeground(Color.WHITE);
+        graciasLabel.setBounds(50, 10, 400, 50);
+    
+        // Nuevos campos de información
+        JLabel telefonoLabel = new JLabel("Número de Teléfono:");
+        JTextField campoTelefono = new JTextField();
+    
+        JLabel estadoLabel = new JLabel("Estado:");
+        JTextField campoEstado = new JTextField();
+    
+        JLabel municipioLabel = new JLabel("Municipio:");
+        JTextField campoMunicipio = new JTextField();
+    
+        JLabel localidadLabel = new JLabel("Localidad:");
+        JTextField campoLocalidad = new JTextField();
+    
+        JButton finalizarButton = new JButton("Finalizar");
+    
+        // Estilo para las etiquetas
+        Font fuenteEtiqueta = new Font("Times New Roman", Font.BOLD, 14);
+        Color colorTexto = Color.WHITE;
+    
+        telefonoLabel.setFont(fuenteEtiqueta);
+        telefonoLabel.setForeground(colorTexto);
+    
+        estadoLabel.setFont(fuenteEtiqueta);
+        estadoLabel.setForeground(colorTexto);
+    
+        municipioLabel.setFont(fuenteEtiqueta);
+        municipioLabel.setForeground(colorTexto);
+    
+        localidadLabel.setFont(fuenteEtiqueta);
+        localidadLabel.setForeground(colorTexto);
+    
+        // Posiciones de los nuevos componentes
+        telefonoLabel.setBounds(50, 70, 150, 20);
+        campoTelefono.setBounds(200, 70, 120, 20);
+    
+        estadoLabel.setBounds(50, 100, 150, 20);
+        campoEstado.setBounds(200, 100, 120, 20);
+    
+        municipioLabel.setBounds(50, 130, 150, 20);
+        campoMunicipio.setBounds(200, 130, 120, 20);
+    
+        localidadLabel.setBounds(50, 160, 150, 20);
+        campoLocalidad.setBounds(200, 160, 120, 20);
+    
+        finalizarButton.setBounds(50, 200, 120, 30);
+    
+        // Agregar fondo al panel
+        loginCenterP.setBackground(new Color(30, 30, 30));
+    
+        // Agregar componentes al panel
+        loginCenterP.add(graciasLabel);
+        loginCenterP.add(telefonoLabel);
+        loginCenterP.add(campoTelefono);
+        loginCenterP.add(estadoLabel);
+        loginCenterP.add(campoEstado);
+        loginCenterP.add(municipioLabel);
+        loginCenterP.add(campoMunicipio);
+        loginCenterP.add(localidadLabel);
+        loginCenterP.add(campoLocalidad);
+        loginCenterP.add(finalizarButton);
+    
+        // Agregar el panel al contenido de la ventana2
+        ventana2.getContentPane().add(loginCenterP, BorderLayout.CENTER);
+    
+        // Refrescar la ventana2
+        ventana2.revalidate();
+        ventana2.repaint();
     }
+    
+    
 
     private void buscarConductor() {
         // Implementar funcionalidad de búsqueda de conductor
