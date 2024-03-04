@@ -17,4 +17,4 @@ public class ConfiguracionModel {
             listaUsuarios.add(usuario);
         }
     
-}
+    }
