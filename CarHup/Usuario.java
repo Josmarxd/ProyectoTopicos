@@ -4,12 +4,34 @@ public class Usuario {
         private String fechaNacimiento;
         private String correo;
         private String passaword;
+        private String estado;
+        private String municipio;
+        private String localidad;
+        private String numeroDeTelefono;
+
+        public Usuario(String nombre, String fechaNacimiento, String correo, String passaword, String estado,String municipio, String localidad) {
+            setCorreo(correo);
+            setFechaNacimiento(fechaNacimiento);
+            setNombre(nombre);
+            setPassaword(passaword);
+            setEstado(estado);
+            setMunicipio(municipio);
+            setLocalidad(localidad);
+            setNumeroDeTelefono(localidad);
+        }
     
         public Usuario(String nombre, String fechaNacimiento, String correo, String passaword) {
             setCorreo(correo);
             setFechaNacimiento(fechaNacimiento);
             setNombre(nombre);
             setPassaword(passaword);
+        }
+
+        public Usuario(){
+            nombre = null;
+            fechaNacimiento = null;
+            correo = null;
+            passaword = null;
         }
 
         public void setCorreo(String correo) {
@@ -42,5 +64,40 @@ public class Usuario {
 
         public String getPassaword() {
             return passaword;
+        }
+
+        public void setEstado(String estado) {
+            this.estado = estado;
+        }
+
+        public void setLocalidad(String localidad) {
+            this.localidad = localidad;
+        }
+
+
+        public void setMunicipio(String municipio) {
+            this.municipio = municipio;
+        }
+
+        public void setNumeroDeTelefono(String numeroDeTelefono) {
+            this.numeroDeTelefono = numeroDeTelefono;
+        }
+
+
+        public String getEstado() {
+            return estado;
+        }
+
+
+        public String getLocalidad() {
+            return localidad;
+        }
+
+        public String getMunicipio() {
+            return municipio;
+        }
+
+        public String getNumeroDeTelefono() {
+            return numeroDeTelefono;
         }
 }
