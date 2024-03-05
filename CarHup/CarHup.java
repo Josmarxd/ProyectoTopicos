@@ -2,6 +2,7 @@ package CarHup;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Collections;
+import java.util.List;
 
 import javax.swing.*;
 public class CarHup extends JFrame implements ActionListener{
@@ -30,7 +31,7 @@ public class CarHup extends JFrame implements ActionListener{
     JButton modoOscuroButton;
     JButton miInformacionButton;
 
-    ConfiguracionModel usuario;
+    ConfiguracionModel addUsuario;
 
       
 
@@ -51,8 +52,8 @@ public class CarHup extends JFrame implements ActionListener{
         miInformacionButton = new JButton("Mi Información");
         logoVna = new ImageIcon("CarHup/Imagenes/Loficial.png");
         barraDesplazamiento=null;
-
-        usuario = new ConfiguracionModel();
+        addUsuario = new ConfiguracionModel();
+    
         init();
         
     }
@@ -205,7 +206,10 @@ public class CarHup extends JFrame implements ActionListener{
     
     
 
+   @SuppressWarnings("deprecation")
    private void crearCuenta(JPanel loginCenterP) {
+    Usuario cuenta;
+    cuenta = new Usuario();
     loginCenterP.removeAll();
 
     // Etiqueta "Crear Cuenta"
@@ -218,19 +222,25 @@ public class CarHup extends JFrame implements ActionListener{
     // Etiquetas y componentes restantes
     JLabel nombreDeUsuario = new JLabel("Nombre de usuario:");
     JTextField campoUsuario = new JTextField(20);
+    cuenta.setNombre(nombreDeUsuario.getText());
+    
 
     JLabel fechaNacimientoLabel = new JLabel("Fecha de Nacimiento:");
     JTextField campoFechaNacimiento = new JTextField(20);
+    cuenta.setFechaNacimiento(fechaNacimientoLabel.getText());
 
     JLabel sexoLabel = new JLabel("Sexo:");
     String[] opcionesSexo = {"Hombre", "Mujer"};
     JComboBox<String> comboBoxSexo = new JComboBox<>(opcionesSexo);
+    cuenta.setSexo((String) comboBoxSexo.getSelectedItem());
 
     JLabel correoLabel = new JLabel("Correo Electrónico:");
     JTextField campoCorreo = new JTextField(20);
+    cuenta.setCorreo(correoLabel.getText() );
 
     JLabel contrasenaLabel = new JLabel("Contraseña:");
     JPasswordField campoContrasena = new JPasswordField(20);
+    cuenta.setPassaword(campoContrasena.getText());
 
     JButton crearCtaConductor = new JButton("Crear Cuenta conductor");
     JButton crearButton = new JButton("Crear");
@@ -254,8 +264,6 @@ public class CarHup extends JFrame implements ActionListener{
     nombreDeUsuario.setFont(fuenteEtiqueta);
     nombreDeUsuario.setForeground(colorTexto);
 
-    crearCtaConductor.addActionListener(e -> crearCuentaConductor(loginCenterP));
-    crearButton.addActionListener(e -> guardarDatos());
 
     // Posiciones de las etiquetas y componentes
     nombreDeUsuario.setBounds(50, 50, 150, 20);
@@ -290,13 +298,21 @@ public class CarHup extends JFrame implements ActionListener{
     loginCenterP.add(crearCtaConductor);
     loginCenterP.add(crearButton);
 
+    
+
+    crearCtaConductor.addActionListener(e -> crearCuentaConductor(loginCenterP, cuenta));
+    crearButton.addActionListener(e -> guardarDatos(cuenta));
+
     ventana2.getContentPane().add(loginCenterP, BorderLayout.CENTER);
     ventana2.revalidate();
     ventana2.repaint();
     }
 
-    private void guardarDatos(){
-     // Logica para guardar los datos
+    private void guardarDatos(Usuario cuenta){
+       addUsuario.agregarUsuario(cuenta);
+       JOptionPane.showMessageDialog(null,"Creado Corectamente :D!!!");
+                
+       
     }
 
 
@@ -305,7 +321,7 @@ public class CarHup extends JFrame implements ActionListener{
     }
     
 
-    private void crearCuentaConductor(JPanel loginCenterP) {
+    private void crearCuentaConductor(JPanel loginCenterP, Usuario cuenta) {
         loginCenterP.removeAll();  // Limpiar el panel existente
     
         // Etiqueta de agradecimiento
@@ -317,22 +333,29 @@ public class CarHup extends JFrame implements ActionListener{
         // Nuevos campos de información
         JLabel telefonoLabel = new JLabel("Número de Teléfono:");
         JTextField campoTelefono = new JTextField();
+        cuenta.setNumeroDeTelefono(campoTelefono.getText());
     
         JLabel estadoLabel = new JLabel("Estado:");
         JTextField campoEstado = new JTextField();
+        cuenta.setEstado(campoEstado.getText());
     
         JLabel municipioLabel = new JLabel("Municipio:");
         JTextField campoMunicipio = new JTextField();
+        cuenta.setMunicipio(campoMunicipio.getText());
     
         JLabel localidadLabel = new JLabel("Localidad:");
         JTextField campoLocalidad = new JTextField();
-    
+         cuenta.setLocalidad(campoLocalidad.getText());
+
+         cuenta.setEsConductor(true);
         JButton finalizarButton = new JButton("Finalizar");
-    
+
+        finalizarButton.addActionListener(e -> guardarDatos(cuenta));
         // Estilo para las etiquetas
         Font fuenteEtiqueta = new Font("Times New Roman", Font.BOLD, 14);
         Color colorTexto = Color.WHITE;
     
+
         telefonoLabel.setFont(fuenteEtiqueta);
         telefonoLabel.setForeground(colorTexto);
     
@@ -402,9 +425,88 @@ public class CarHup extends JFrame implements ActionListener{
     }
 
     private void inicio() {
-
+        inicioP.removeAll();
+        inicioP.setBackground(Color.BLACK);
+    
+        Font fuenteEtiqueta = new Font("Times New Roman", Font.BOLD, 14);
+        Color colorTexto = Color.WHITE;
+    
+        List<Usuario> listaUsuarios = addUsuario.getListaUsuarios();
+    
+        inicioP.setLayout(new GridLayout(listaUsuarios.size(), 2));
+    
+        Collections.shuffle(listaUsuarios);
+    
+        for (Usuario usuario : listaUsuarios) {
+            // Construir paneles y agregar contenido para cada usuario
+            JPanel usuarioPanel = new JPanel(new BorderLayout());
+            usuarioPanel.setBackground(new Color(30, 30, 30));
+            usuarioPanel.setLayout(new GridLayout(1, 2));
+    
+            // Subpanel para la foto
+            JPanel fotoPanel = new JPanel();
+            fotoPanel.setBackground(new Color(30, 30, 30));
+    
+            JLabel fotoLabel = new JLabel("Foto de " + usuario.getNombre());
+            fotoLabel.setFont(fuenteEtiqueta);
+            fotoLabel.setForeground(colorTexto);
+            fotoLabel.setBackground(new Color(30, 30, 30));
+            fotoLabel.setOpaque(true); // Permitir que la etiqueta tenga fondo
+            fotoPanel.add(fotoLabel);
+    
+            // Subpanel para la descripción
+            JPanel descripcionPanel = new JPanel();
+            descripcionPanel.setBackground(new Color(30, 30, 30));
+            descripcionPanel.setLayout(new GridLayout(4, 1));
+    
+            JLabel nombreLabel = new JLabel("Nombre: " + usuario.getNombre());
+            nombreLabel.setFont(fuenteEtiqueta);
+            nombreLabel.setForeground(colorTexto);
+            nombreLabel.setBackground(new Color(30, 30, 30));
+            nombreLabel.setOpaque(true);
+            descripcionPanel.add(nombreLabel);
+    
+            JLabel fechaNacimientoLabel = new JLabel("Fecha de Nacimiento: " + usuario.getFechaNacimiento());
+            fechaNacimientoLabel.setFont(fuenteEtiqueta);
+            fechaNacimientoLabel.setForeground(colorTexto);
+            fechaNacimientoLabel.setBackground(new Color(30, 30, 30));
+            fechaNacimientoLabel.setOpaque(true);
+            descripcionPanel.add(fechaNacimientoLabel);
+    
+            JLabel correoLabel = new JLabel("Correo: " + usuario.getCorreo());
+            correoLabel.setFont(fuenteEtiqueta);
+            correoLabel.setForeground(colorTexto);
+            correoLabel.setBackground(new Color(30, 30, 30));
+            correoLabel.setOpaque(true);
+            descripcionPanel.add(correoLabel);
+    
+            // Botón "Llamar"
+            JButton llamarButton = new JButton("Llamar");
+            llamarButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    // Lógica para llamar al usuario
+                    JOptionPane.showMessageDialog(null, "Llamando a " + usuario.getNombre());
+                }
+            });
+    
+            descripcionPanel.add(llamarButton);
+            usuarioPanel.add(fotoPanel);
+            usuarioPanel.add(descripcionPanel);
+            usuarioPanel.setBorder(BorderFactory.createLineBorder(new Color(255, 140, 0)));
+            inicioP.add(usuarioPanel);
+        }
+    
+        if (barraDesplazamiento == null) {
+            barraDesplazamiento = new JScrollPane(inicioP);
+            barraDesplazamiento.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+            getContentPane().add(barraDesplazamiento, BorderLayout.CENTER);
+        } else {
+            barraDesplazamiento.setViewportView(inicioP);
+        }
+        revalidate();
     }
-
+    
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == configuracionButton) {

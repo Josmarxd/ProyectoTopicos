@@ -11,15 +11,11 @@ public class Usuario {
         private String sexo;
         private boolean esConductor;
 
-        public Usuario(String nombre, String fechaNacimiento, String correo, String passaword, String estado,String municipio, String localidad) {
-            setCorreo(correo);
-            setFechaNacimiento(fechaNacimiento);
-            setNombre(nombre);
-            setPassaword(passaword);
+        public Usuario(String estado,String municipio, String localidad,String numeroDeTelefono) {
             setEstado(estado);
             setMunicipio(municipio);
             setLocalidad(localidad);
-            setNumeroDeTelefono(localidad);
+            setNumeroDeTelefono(numeroDeTelefono);
             esConductor = true;
             
             
