@@ -15,6 +15,5 @@ public class ConfiguracionModel {
     
         public void agregarUsuario(Usuario usuario) {
             listaUsuarios.add(usuario);
-        }
-    
-    }
+        }   
+}

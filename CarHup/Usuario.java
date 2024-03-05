@@ -8,6 +8,8 @@ public class Usuario {
         private String municipio;
         private String localidad;
         private String numeroDeTelefono;
+        private String sexo;
+        private boolean esConductor;
 
         public Usuario(String nombre, String fechaNacimiento, String correo, String passaword, String estado,String municipio, String localidad) {
             setCorreo(correo);
@@ -18,13 +20,18 @@ public class Usuario {
             setMunicipio(municipio);
             setLocalidad(localidad);
             setNumeroDeTelefono(localidad);
+            esConductor = true;
+            
+            
         }
     
-        public Usuario(String nombre, String fechaNacimiento, String correo, String passaword) {
+        public Usuario(String nombre, String fechaNacimiento, String correo, String passaword,String sexo) {
             setCorreo(correo);
             setFechaNacimiento(fechaNacimiento);
             setNombre(nombre);
             setPassaword(passaword);
+            setSexo(sexo);
+            esConductor = false;
         }
 
         public Usuario(){
@@ -99,5 +106,21 @@ public class Usuario {
 
         public String getNumeroDeTelefono() {
             return numeroDeTelefono;
+        }
+
+        public void setSexo(String sexo) {
+            this.sexo = sexo;
+        }
+
+        public String getSexo() {
+            return sexo;
+        }
+
+        public void setEsConductor(boolean esConductor) {
+            this.esConductor = esConductor;
+        }
+
+        public boolean getEsConductor(){
+            return esConductor;
         }
 }
