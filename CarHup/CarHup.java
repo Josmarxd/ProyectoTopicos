@@ -454,7 +454,18 @@ public class CarHup extends JFrame implements ActionListener{
     }
 
     private void modoOscuro(){
-    
+       JLabel Activado = new JLabel("Activado");
+       JLabel Desactivado = new JLabel("Desactivado");
+
+    Activado.setBounds(50, 150, 140, 30);
+    Desactivado.setBounds(50, 200, 140, 30);
+
+    add(Activado);
+    add(Desactivado);
+
+    revalidate();
+    repaint();
+
 }
     private void miInformacion(){
 
