@@ -403,57 +403,6 @@ public class CarHup extends JFrame implements ActionListener{
 
     private void inicio() {
 
-    Datos datos = new Datos();
-    List<Usuario> listaUsuarios = datos.datos1();
-    
-    inicioP.removeAll(); 
-    
-    inicioP.setLayout(new GridLayout(listaUsuarios.size(), 2));
-    
-    Collections.shuffle(listaUsuarios);
-    
-    for (Usuario usuario : listaUsuarios) {
-        // Panel para cada usuario
-        JPanel usuarioPanel = new JPanel(new BorderLayout());
-        usuarioPanel.setBackground(new Color(150, 100, 50));
-            usuarioPanel.setLayout(new GridLayout(1, 2)); 
-    
-            // Subpanel para la foto
-            JPanel fotoPanel = new JPanel();
-            JLabel fotoLabel = new JLabel("Foto de " + usuario.getNombre());
-            fotoPanel.add(fotoLabel);
-
-            //Sub panel para la descripcion
-            JPanel descripcionPanel = new JPanel();
-            descripcionPanel.setLayout(new GridLayout(4, 1)); // Tres filas para la descripción
-            descripcionPanel.add(new JLabel("Nombre: " + usuario.getNombre()));
-            descripcionPanel.add(new JLabel("Fecha de Nacimiento: " + usuario.getFechaNacimiento()));
-            descripcionPanel.add(new JLabel("Correo: " + usuario.getCorreo()));
-
-            // Botón "Llamar"
-            JButton llamarButton = new JButton("Llamar");
-            llamarButton.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    // Lógica para llamar al usuario
-                    JOptionPane.showMessageDialog(null, "Llamando a " + usuario.getNombre());
-                }
-            });
-
-            descripcionPanel.add(llamarButton);
-            usuarioPanel.add(fotoPanel);
-            usuarioPanel.add(descripcionPanel);
-            usuarioPanel.setBorder(BorderFactory.createLineBorder(new Color(255, 140, 0)));
-            inicioP.add(usuarioPanel);
-        }
-        
-        if (barraDesplazamiento == null) {
-            barraDesplazamiento = new JScrollPane(inicioP);
-            barraDesplazamiento.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-            getContentPane().add(barraDesplazamiento, BorderLayout.CENTER);
-        } else {
-            barraDesplazamiento.setViewportView(inicioP);
-        }
-        revalidate();
     }
 
     @Override
