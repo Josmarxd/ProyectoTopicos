@@ -413,13 +413,49 @@ public class CarHup extends JFrame implements ActionListener{
     }
 
     private void configuracion() {
-
+        // Crear el panel de configuración
+        JPanel config = new JPanel();
+        config.setBackground(new Color(30, 30, 30));
+    
+        // Configurar los componentes y sus posiciones
+        JButton miInformacionButton = new JButton("Mi Información");
+        miInformacionButton.setBounds(50, 50, 140, 30); // x, y, width, height
+        miInformacionButton.addActionListener(e -> miInformacion());
+        config.add(miInformacionButton);
+    
+        JButton temaButton = new JButton("Modo Oscuro");
+        temaButton.setBounds(50, 100, 140, 30);
+        temaButton.addActionListener(e -> modoOscuro());
+        config.add(temaButton);
+    
+        // Crear el diálogo de configuración
+        JDialog configuracionDialog = new JDialog();
+        configuracionDialog.setTitle("Configuración");
+        configuracionDialog.setModal(true);
+        configuracionDialog.getContentPane().add(config); // Añadir el panel al diálogo
+    
+        // Obtener las dimensiones de la pantalla
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int height = screenSize.height;
+        int width = screenSize.width;
+    
+        // Configurar el tamaño del diálogo para que abarque todo el largo de la pantalla
+        configuracionDialog.setSize(300, height);
+    
+        // Configurar la ubicación del diálogo para que se abra en la parte derecha de la pantalla
+        configuracionDialog.setLocation(width - configuracionDialog.getWidth(), 0);
+    
+        // Hacer visible el diálogo
+        configuracionDialog.setVisible(true);
+        JLabel configuracionLabel = new JLabel("Configuración");
+    
+        // Añadir el logo y el texto al panel
+        config.add(configuracionLabel);
     }
 
     private void modoOscuro(){
-
-    }
-
+    
+}
     private void miInformacion(){
 
     }
