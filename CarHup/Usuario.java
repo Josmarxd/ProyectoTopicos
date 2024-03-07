@@ -17,7 +17,7 @@ public class Usuario {
             setMunicipio(municipio);
             setLocalidad(localidad);
             setNumeroDeTelefono(numeroDeTelefono);
-            esConductor = true;
+            esConductor = false;
             
             
         }
