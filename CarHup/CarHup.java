@@ -425,7 +425,7 @@ public class CarHup extends JFrame implements ActionListener{
     
         JButton temaButton = new JButton("Modo Oscuro");
         temaButton.setBounds(50, 100, 140, 30);
-        temaButton.addActionListener(e -> modoOscuro());
+        temaButton.addActionListener(e -> modoOscuro(config));
         config.add(temaButton);
     
         // Crear el diálogo de configuración
@@ -453,18 +453,20 @@ public class CarHup extends JFrame implements ActionListener{
         config.add(configuracionLabel);
     }
 
-    private void modoOscuro(){
+    private void modoOscuro(JPanel config){
        JLabel Activado = new JLabel("Activado");
        JLabel Desactivado = new JLabel("Desactivado");
 
     Activado.setBounds(50, 150, 140, 30);
+    Activado.setForeground(Color.CYAN);
     Desactivado.setBounds(50, 200, 140, 30);
+    Desactivado.setForeground(Color.CYAN);
 
-    add(Activado);
-    add(Desactivado);
+    config.add(Activado);
+    config.add(Desactivado);
 
-    revalidate();
-    repaint();
+    config.revalidate();
+    config.repaint();
 
 }
     private void miInformacion(){
@@ -575,3 +577,4 @@ public class CarHup extends JFrame implements ActionListener{
     } 
 
 }
+
