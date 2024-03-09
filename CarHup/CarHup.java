@@ -502,7 +502,7 @@ public class CarHup extends JFrame implements ActionListener{
         // Configurar los componentes y sus posiciones
         JButton miInformacionButton = new JButton("Mi Información");
         miInformacionButton.setBounds(50, 50, 140, 30); // x, y, width, height
-        miInformacionButton.addActionListener(e -> miInformacion());
+        miInformacionButton.addActionListener(e -> miInformacion(config));
         config.add(miInformacionButton);
     
         JButton temaButton = new JButton("Modo Oscuro");
@@ -533,6 +533,7 @@ public class CarHup extends JFrame implements ActionListener{
     
         // Añadir el logo y el texto al panel
         config.add(configuracionLabel);
+
     }
 
     private void modoOscuro(JPanel config){
@@ -549,9 +550,8 @@ public class CarHup extends JFrame implements ActionListener{
 
     config.revalidate();
     config.repaint();
-
 }
-    private void miInformacion(){
+    private void miInformacion(JPanel config){
 
     }
 
@@ -570,11 +570,7 @@ public class CarHup extends JFrame implements ActionListener{
             buscar();
         } else if (e.getSource() == loginButton) {
             login();
-        } else if (e.getSource() == modoOscuroButton) {
-            modoOscuro();
-        } else if (e.getSource() == miInformacionButton) {
-            miInformacion();
-        }
+        } 
     }
 
     public static void main(String[] args) {
