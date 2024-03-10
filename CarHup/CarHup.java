@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.swing.*;
-public class CarHup extends JFrame implements ActionListener{
+public class CarHup extends JFrame{
 
     //Josmar
     JPanel loginNorte;
@@ -30,26 +30,28 @@ public class CarHup extends JFrame implements ActionListener{
     JButton configuracionButton;
     JButton modoOscuroButton;
     JButton miInformacionButton;
+
+    private int x;
+
+   
     
 
-    ConfiguracionModel addUsuario;
-    
+    CarHupControlle car;
 
-      
+    public CarHup(String nombre){
 
-    public CarHup(){
         loginNorte = new JPanel();
         ventana2 = new JDialog(this, "VENTANA 2",true);
         inicioP = new JPanel();
-        
+        super(nombre);
         norte = new JPanel();
-        nombreU = new JLabel("Hola"+ " Josmar");
+        nomb    reU = new JLabel("Hola"+ " Josmar");
         nombreCarHup = new JLabel("CARHUP");
         logo = new JLabel();
         inicioButton = new JButton("Inicio");
         buscarButton = new JButton("Buscar");
         loginButton = new JButton("Login");
-        configuracionButton = new JButton("Configuración");
+        configur    acionButton = new JButton("Configuración");
         modoOscuroButton = new JButton("Modo Oscuro");
         miInformacionButton = new JButton("Mi Información");
         logoVna = new ImageIcon("CarHup/Imagenes/Loficial.png");
@@ -68,19 +70,10 @@ public class CarHup extends JFrame implements ActionListener{
        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
        this.setLayout(new BorderLayout());
        this.setLocationRelativeTo(null);
-       this.setTitle("CARHUP");
        this.setIconImage(logoVna.getImage());
 
        norte();
-       inicio();
-
-       // Registra ActionListener para los botones
-    inicioButton.addActionListener(this);
-    buscarButton.addActionListener(this);
-    loginButton.addActionListener(this);
-    configuracionButton.addActionListener(this);
-    modoOscuroButton.addActionListener(this);
-    miInformacionButton.addActionListener(this);
+       inicio(); 
     }
 
     private void norte() {
@@ -109,86 +102,10 @@ public class CarHup extends JFrame implements ActionListener{
         
         this.getContentPane().add(norte, BorderLayout.NORTH);
     }
+
+
     private void buscar() {
-        inicioP.removeAll();
-        inicioP.setBackground(Color.BLACK);
-
-        Font fuenteEtiqueta = new Font("Times New Roman", Font.BOLD, 14);
-        Color colorTexto = Color.WHITE;
-
-        List<Usuario> listaUsuarios = addUsuario.getListaUsuarios();
-
-        inicioP.setLayout(new GridLayout(listaUsuarios.size(), 2));
-
-        Collections.shuffle(listaUsuarios);
-
-        for (Usuario usuario : listaUsuarios) {
-            // Construir paneles y agregar contenido para cada usuario
-            JPanel usuarioPanel = new JPanel(new BorderLayout());
-            usuarioPanel.setBackground(new Color(30, 30, 30));
-            usuarioPanel.setLayout(new GridLayout(1, 2));
-
-            // Subpanel para la foto
-            JPanel fotoPanel = new JPanel();
-            fotoPanel.setBackground(new Color(30, 30, 30));
-
-            JLabel fotoLabel = new JLabel("Foto de " + usuario.getNombre());
-            fotoLabel.setFont(fuenteEtiqueta);
-            fotoLabel.setForeground(colorTexto);
-            fotoLabel.setBackground(new Color(30, 30, 30));
-            fotoLabel.setOpaque(true); // Permitir que la etiqueta tenga fondo
-            fotoPanel.add(fotoLabel);
-
-            // Subpanel para la descripción
-            JPanel descripcionPanel = new JPanel();
-            descripcionPanel.setBackground(new Color(30, 30, 30));
-            descripcionPanel.setLayout(new GridLayout(4, 1));
-
-            JLabel nombreLabel = new JLabel("Nombre: " + usuario.getNombre());
-            nombreLabel.setFont(fuenteEtiqueta);
-            nombreLabel.setForeground(colorTexto);
-            nombreLabel.setBackground(new Color(30, 30, 30));
-            nombreLabel.setOpaque(true);
-            descripcionPanel.add(nombreLabel);
-
-            JLabel fechaNacimientoLabel = new JLabel("Fecha de Nacimiento: " + usuario.getFechaNacimiento());
-            fechaNacimientoLabel.setFont(fuenteEtiqueta);
-            fechaNacimientoLabel.setForeground(colorTexto);
-            fechaNacimientoLabel.setBackground(new Color(30, 30, 30));
-            fechaNacimientoLabel.setOpaque(true);
-            descripcionPanel.add(fechaNacimientoLabel);
-
-            JLabel correoLabel = new JLabel("Correo: " + usuario.getCorreo());
-            correoLabel.setFont(fuenteEtiqueta);
-            correoLabel.setForeground(colorTexto);
-            correoLabel.setBackground(new Color(30, 30, 30));
-            correoLabel.setOpaque(true);
-            descripcionPanel.add(correoLabel);
-
-            // Botón "Llamar"
-            JButton llamarButton = new JButton("Llamar");
-            llamarButton.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    // Lógica para llamar al usuario
-                    JOptionPane.showMessageDialog(null, "Llamando a " + usuario.getNombre());
-                }
-            });
-
-            descripcionPanel.add(llamarButton);
-            usuarioPanel.add(fotoPanel);
-            usuarioPanel.add(descripcionPanel);
-            usuarioPanel.setBorder(BorderFactory.createLineBorder(new Color(255, 140, 0)));
-            inicioP.add(usuarioPanel);
-        }
-
-        if (barraDesplazamiento == null) {
-            barraDesplazamiento = new JScrollPane(inicioP);
-            barraDesplazamiento.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-            getContentPane().add(barraDesplazamiento, BorderLayout.CENTER);
-        } else {
-            barraDesplazamiento.setViewportView(inicioP);
-        }
-        revalidate();
+       Jpanel usuarios = new JPanel();
     }
 
     
@@ -558,24 +475,6 @@ public class CarHup extends JFrame implements ActionListener{
     private void inicio() {
 
     }
-    
-    
-    
-    public void actionPerformed(ActionEvent e) {
-      
-    
-        if (e.getSource() == configuracionButton) {
-            configuracion();
-        } else if (e.getSource() == buscarButton) {
-            buscar();
-        } else if (e.getSource() == loginButton) {
-            login();
-        } 
-    }
-
-    public static void main(String[] args) {
-        CarHup car = new CarHup();
-    } 
-
+   
 }
 
