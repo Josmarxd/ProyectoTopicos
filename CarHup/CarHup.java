@@ -573,7 +573,7 @@ public class CarHup extends JFrame implements ActionListener{
         } 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) {,
         CarHup car = new CarHup();
     } 
 
