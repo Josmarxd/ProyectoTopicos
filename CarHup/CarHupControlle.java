@@ -1,9 +1,10 @@
+import java.awt.*;
 import java.awt.event.*;
-import javax.swing.*;
 public class CarHupControlle implements ActionListener {
     CarHup ventana;
     ConfiguracionModel add;
     ConfiguracionModel addU;
+   
     
     public CarHupControlle(){
       ventana = new CarHup("CARHUP");
@@ -46,16 +47,21 @@ public class CarHupControlle implements ActionListener {
 
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == ventana.getInicioButton())
-            ventana.inicio();
-        else if (e.getSource() == ventana.getLoginButton())
-            ventana.login();
-        else if (e.getSource() == ventana.getBuscarButton())
-            mostrarBuscadorDialog();
-        else if (e.getSource() == ventana.getConfiguracionButton())
-            ventana.configuracion();
-    }
+public void actionPerformed(ActionEvent e) {
+    if (e.getSource() == ventana.getInicioButton()){
+        ventana.inicio();
+        ventana.getBuscador().removeAll();
+    } else if (e.getSource() == ventana.getLoginButton()){
+        ventana.login();
+        ventana.getBuscador().removeAll();
+    } else if (e.getSource() == ventana.getBuscarButton()){
+        mostrarBuscadorDialog();
+    } else if (e.getSource() == ventana.getConfiguracionButton()){
+        ventana.configuracion();
+        ventana.getBuscador().removeAll();
+    } 
+}
+
     
 
     public void botonesInternos(){ 
@@ -68,10 +74,12 @@ public class CarHupControlle implements ActionListener {
         ventana.getModoOscuroButton().addActionListener(e->ventana.modoOscuro());
         ventana.getCrearCtaConductor().addActionListener(e->ventana.crearCuentaConductor());
         ventana.getResert().addActionListener(e-> ventana.sugerencias(addU));
+        ventana.getBuscarCButton().addActionListener(e -> ventana.buscar(ventana.getBuscarField().getText(), addU)); 
         ventana.getInicioButton().addActionListener(this);
         ventana.getLoginButton().addActionListener(this);
         ventana.getConfiguracionButton().addActionListener(this);
-        ventana.getBuscarButton().addActionListener(this);
+        ventana.getBuscarButton().addActionListener(this); 
+        
     }
     
     
@@ -79,16 +87,18 @@ public class CarHupControlle implements ActionListener {
     }
 
     public void mostrarBuscadorDialog() {
+       
+        ventana.getBuscador().setOpaque(false);
+        ventana.getBuscador().setLayout(new FlowLayout(FlowLayout.LEFT, 20, 0));
+
         ventana.getBuscarField().setText("Digite el Nombre");
-        ventana.getBuscarField().setBounds(50, 150, 200, 30);
-        ventana.getBuscarCButton().setBounds(260, 150, 100, 30);
-        ventana.getResert().setBounds(860,150,80,30);
-    
-        ventana.getNorte().add(ventana.getBuscarField());
-        ventana.getNorte().add(ventana.getBuscarCButton());
-        ventana.getNorte().add(ventana.getResert());
-    
-        // Actualiza el panel norte
+        ventana.getBuscarField().setPreferredSize(new Dimension(200, 25));
+        ventana.getBuscarCButton().setPreferredSize(new Dimension(100, 25));
+        ventana.getBuscarCButton().setContentAreaFilled(false);
+
+        ventana.getBuscador().add(ventana.getBuscarField());
+        ventana.getBuscador().add(ventana.getBuscarCButton());
+        ventana.getNorte().add(ventana.getBuscador());
         ventana.getNorte().revalidate();
         ventana.getNorte().repaint();
     }
