@@ -2,6 +2,7 @@ import java.awt.*;
 import java.util.*;
 import javax.swing.*;
 import java.util.List;
+
 public class CarHup extends JFrame{
 
     private JPanel buscador;
@@ -51,6 +52,7 @@ public class CarHup extends JFrame{
     private Color textoColorBlack;
     private JPanelImage fondoPanel;
     private JButton acercaDe;
+    private JButton acercaDe2;
 
     
        
@@ -82,6 +84,9 @@ public class CarHup extends JFrame{
         textoColorBlack = Color.BLACK;
         acercaDe = new JButton("Sugerencias");
         informacioPanel = new JPanel();
+
+        acercaDe2 = new JButton("Acerca De");
+
     
         // Buscar
         nombreLabel = new JLabel("Usuario");
@@ -371,7 +376,7 @@ public class CarHup extends JFrame{
     
         miInformacionButton.setBounds(50, 50, 200, 40);
         modoOscuroButton.setBounds(50, 100, 200, 40);
-        acercaDe.setBounds(50, 150, 200, 40);
+        acercaDe2.setBounds(50, 150, 200, 40);
     
         miInformacionButton.setForeground(Color.WHITE);
         miInformacionButton.setBackground(new Color(50, 50, 50));
@@ -381,13 +386,13 @@ public class CarHup extends JFrame{
         modoOscuroButton.setBackground(new Color(50, 50, 50));
         modoOscuroButton.setFocusPainted(false);
     
-        acercaDe.setForeground(Color.WHITE);
-        acercaDe.setBackground(new Color(50, 50, 50));
-        acercaDe.setFocusPainted(false);
+        acercaDe2.setForeground(Color.WHITE);
+        acercaDe2.setBackground(new Color(50, 50, 50));
+        acercaDe2.setFocusPainted(false);
     
         config.add(miInformacionButton);
         config.add(modoOscuroButton);
-        config.add(acercaDe);
+        config.add(acercaDe2);
     
         JLabel versionLabel = new JLabel("Versión 0.1");
         versionLabel.setForeground(Color.WHITE);
@@ -742,15 +747,9 @@ public class CarHup extends JFrame{
         return buscador;
     }
 
-<<<<<<< HEAD
-    public static void main(String[] args) {,
-        CarHup car = new CarHup();
-    } 
-
-=======
     public static void main(String[] args) {
         CarHupControlle c = new CarHupControlle();
     }
->>>>>>> b429a9480ff87adf14d385798346b88392c28415
+
 }
 
