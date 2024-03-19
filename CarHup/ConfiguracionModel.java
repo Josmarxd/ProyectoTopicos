@@ -1,4 +1,3 @@
-package CarHup;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -25,8 +24,7 @@ public class ConfiguracionModel {
         List<Usuario> conductores = listaUsuarios.stream()
                 .filter(Usuario::getEsConductor)
                 .collect(Collectors.toList());
-
-        
+                
         Collections.shuffle(conductores);
 
         return conductores.size() > 5 ? conductores.subList(0, 5) : conductores;

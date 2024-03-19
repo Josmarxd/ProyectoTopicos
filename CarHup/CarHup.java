@@ -1,581 +1,756 @@
-package CarHup;
 import java.awt.*;
-import java.awt.event.*;
-import java.util.Collections;
-import java.util.List;
-
+import java.util.*;
 import javax.swing.*;
-public class CarHup extends JFrame implements ActionListener{
+import java.util.List;
+public class CarHup extends JFrame{
 
-    //Josmar
-    JPanel loginNorte;
-    JDialog ventana2;
-    JPanel norte;
-    ImageIcon logoVna;
+    private JPanel buscador;
+    private JPanelImage panelImagenLogin;
+    private JPanel loginNorte;
+    private JDialog ventana2;
+    private JPanel norte;
+    private ImageIcon logoVna;
+    private JButton iniciarSesionButton;
+    private JButton crearCuentaButton;
+    private JPanel loginCenterP;
+    private JButton botonIniciarSesion;
+    private JButton crearCtaConductor;
+    private JButton crearButton;
+    private JTextField campoUsuario;
+    private JPanel infFot;
+    private JTextField campoCorreo;
+    private JTextField campoTelefono;
+    private JTextField campoEstado;
+    private JTextField campoLocalidad;
+    private JTextField campoMunicipio;
+    private JTextField campoFechaNacimiento;
+    private JPasswordField campoContrasena;
+    private String sexoSeleccionado;
+    private JButton miInformacionButton;
+    private JButton modoOscuroButton;
+    private JPanelImage config;
+    private JPanel inicioP;
+    private JScrollPane barraDesplazamiento;
+    private JButton inicioButton;
+    private BotonImagen buscarButton;
+    private ImageIcon buscarImagen;
+    private BotonImagen loginButton;
+    private ImageIcon loginImagen;
+    private JButton configuracionButton;
+    private JLabel nombreCarHup;
+    private JTextField buscarField;
+    private JLabel nombreLabel;
+    private JLabel numeroDeTelefonoLabel;
+    private JLabel correoLabel;
+    private JLabel edadLabel;
+    private JButton llamarButton;
+    private JButton finalizarButton;
+    private JButton resert;
+    private JButton buscarCButton;
+    private JPanel informacioPanel;
+    private Color textoColorBlack;
+    private JPanelImage fondoPanel;
+    private JButton acercaDe;
 
-    //Koyoc
-    JPanel inicioP;
-    JScrollPane barraDesplazamiento; 
-
-    //PANEL NORTE
-    JLabel nombreU;
-    JLabel nombreCarHup;
-    JLabel logo;
     
-
-    //botones nena
-    JButton inicioButton;
-    JButton buscarButton;
-    JButton loginButton;
-    JButton configuracionButton;
-    JButton modoOscuroButton;
-    JButton miInformacionButton;
-    
-
-    ConfiguracionModel addUsuario;
-    
-
-      
-
-    public CarHup(){
-        loginNorte = new JPanel();
-        ventana2 = new JDialog(this, "VENTANA 2",true);
+       
+    public CarHup(String nombre) {
+        super(nombre);
+        buscador = new JPanel();
+        infFot = new JPanel();
         inicioP = new JPanel();
-        
+        inicioP.setOpaque(false);
+        resert = new JButton("actualizar");
+        loginNorte = new JPanel();
+        ventana2 = new JDialog(this, "VENTANA 2", true);
         norte = new JPanel();
-        nombreU = new JLabel("Hola"+ " Josmar");
         nombreCarHup = new JLabel("CARHUP");
-        logo = new JLabel();
         inicioButton = new JButton("Inicio");
-        buscarButton = new JButton("Buscar");
-        loginButton = new JButton("Login");
+    
+        buscarImagen = new ImageIcon("CarHup/Imagenes/Buscar.png");
+        buscarButton = new BotonImagen(buscarImagen);
+    
+        loginImagen = new ImageIcon("CarHup/Imagenes/Cuenta.png");
+        loginButton = new BotonImagen(loginImagen);
+        
         configuracionButton = new JButton("Configuración");
         modoOscuroButton = new JButton("Modo Oscuro");
         miInformacionButton = new JButton("Mi Información");
         logoVna = new ImageIcon("CarHup/Imagenes/Loficial.png");
-        barraDesplazamiento=null;
-        addUsuario = new ConfiguracionModel();
-        
+        buscarCButton = new JButton("Buscar");
+        barraDesplazamiento = null;
+        textoColorBlack = Color.BLACK;
+        acercaDe = new JButton("Sugerencias");
+        informacioPanel = new JPanel();
     
+        // Buscar
+        nombreLabel = new JLabel("Usuario");
+        numeroDeTelefonoLabel = new JLabel("S/N");
+        llamarButton = new JButton("Llamar");
+        buscarField = new JTextField("Buscar");
+        resert = new JButton("Sugerencias");
+    
+        // Login
+        iniciarSesionButton = new JButton("Iniciar sesión");
+        crearCuentaButton = new JButton("Crear Cuenta");
+        loginCenterP = new JPanel();
+        botonIniciarSesion = new JButton("Iniciar Sesión");
+        crearCtaConductor = new JButton("Crear Cuenta conductor");
+        crearButton = new JButton("Crear");
+        campoTelefono = new JTextField();
+        campoEstado = new JTextField();
+        campoUsuario = new JTextField();
+        campoLocalidad = new JTextField();
+        campoMunicipio = new JTextField();
+        campoFechaNacimiento = new JTextField();
+        campoCorreo = new JTextField();
+        campoContrasena = new JPasswordField();
+        miInformacionButton = new JButton("Mi Información");
+        config = new JPanelImage("CarHup/Imagenes/Fondo1.jpg");
+        finalizarButton = new JButton("Finalizar");
+        fondoPanel = new JPanelImage("CarHup/Imagenes/Fondo.png");
+        panelImagenLogin = new JPanelImage("CarHup/Imagenes/Fondo.png");
         init();
-        
     }
+    
 
 
     private void init(){
        this.setVisible(true);
        this.setSize(900,900);
        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-       this.setLayout(new BorderLayout());
        this.setLocationRelativeTo(null);
-       this.setTitle("CARHUP");
-       this.setIconImage(logoVna.getImage());
-
-       norte();
-       inicio();
-
-       // Registra ActionListener para los botones
-    inicioButton.addActionListener(this);
-    buscarButton.addActionListener(this);
-    loginButton.addActionListener(this);
-    configuracionButton.addActionListener(this);
-    modoOscuroButton.addActionListener(this);
-    miInformacionButton.addActionListener(this);
+       this.setIconImage(logoVna.getImage());   
+       this.getContentPane().add(fondoPanel);
+        norte();
+        inicio();
     }
 
     private void norte() {
-        norte.setLayout(null);
         norte.setPreferredSize(new Dimension(800, 200));
-        norte.setBackground(Color.black);
-        nombreCarHup.setFont(new Font("Times New Roman", Font.BOLD, 35));
-        nombreCarHup.setForeground(Color.WHITE);
-        // Agregar espacio entre "CARHUP" y el logo
-        nombreCarHup.setBounds(570, 20, 200, 30);
-        inicioButton.setBounds(450,150,70,30);
-        loginButton.setBounds(540, 150, 70, 30);
-        buscarButton.setBounds(630, 150, 80, 30);
-        configuracionButton.setBounds(720, 150, 120, 30);
-        // Agregar "CARHUP" al panel
+        norte.setLayout(new FlowLayout(FlowLayout.LEFT, 200, 50));
+        norte.setOpaque(false);
+    
+        nombreCarHup.setFont(new Font("Aptos", Font.BOLD, 30));
+        nombreCarHup.setForeground(textoColorBlack);
+    
         norte.add(nombreCarHup);
-        norte.add(inicioButton);
-        norte.add(loginButton);
-        norte.add(buscarButton);
-        norte.add(configuracionButton);
-        // Configuración del logo
-        logo.setIcon(new ImageIcon(logoVna.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
-        logo.setBounds(600, 0, 100, 250);
-        // Agregar el logo al panel
-        norte.add(logo);
-        
-        this.getContentPane().add(norte, BorderLayout.NORTH);
+    
+        JPanel panelBotones = new JPanel();
+        panelBotones.setOpaque(false);
+        panelBotones.setLayout(new FlowLayout(FlowLayout.LEFT, 35, 0));
+    
+        inicioButton.setContentAreaFilled(false);
+        inicioButton.setFont(new Font("Aptos", Font.PLAIN, 18));
+        inicioButton.setPreferredSize(new Dimension(100, 50));
+        panelBotones.add(inicioButton);
+    
+        configuracionButton.setContentAreaFilled(false);
+        configuracionButton.setFont(new Font("Aptos", Font.PLAIN, 18));
+        configuracionButton.setPreferredSize(new Dimension(150, 50));
+        panelBotones.add(configuracionButton);
+    
+        resert.setContentAreaFilled(false);
+        resert.setFont(new Font("Aptos", Font.PLAIN, 18));
+        panelBotones.add(resert);
+    
+        buscarButton.setContentAreaFilled(false);
+        buscarButton.setFont(new Font("Aptos", Font.PLAIN, 18));
+        panelBotones.add(buscarButton);
+    
+        loginButton.setContentAreaFilled(false);
+        loginButton.setFont(new Font("Aptos", Font.PLAIN, 18));
+        panelBotones.add(loginButton);
+    
+        norte.add(panelBotones);
+        fondoPanel.add(norte, BorderLayout.NORTH);
     }
-    private void buscar() {
+    
+    public void login() {
+        ventana2.setSize(400, 500);
+        ventana2.setTitle("Iniciar sesión o Crear Cuenta");
+        ventana2.setIconImage(logoVna.getImage());
+    
+        panelImagenLogin.setLayout(new BorderLayout());
+    
+        loginNorte.removeAll();
+    
+        loginCenterP.setBorder(BorderFactory.createEtchedBorder());
+    
+        loginNorte.setPreferredSize(new Dimension(400, 140));
+        loginNorte.setOpaque(false);
+    
+        JLabel inicioCrear = new JLabel("¿Eres nuevo o ya tienes una cuenta?");
+        inicioCrear.setFont(new Font("Times New Roman", Font.BOLD, 23));
+        inicioCrear.setForeground(Color.BLACK);
+        loginNorte.add(inicioCrear);
+    
+        JLabel loginImagen = new JLabel(new ImageIcon(logoVna.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH)));
+        loginNorte.add(loginImagen);
+    
+        iniciarSesionButton.setPreferredSize(new Dimension(120, 30));
+        iniciarSesionButton.setForeground(Color.BLACK); // Letras blancas
+        iniciarSesionButton.setContentAreaFilled(false);
+        loginNorte.add(iniciarSesionButton);
+        loginNorte.setBorder(BorderFactory.createEtchedBorder());
+    
+        crearCuentaButton.setPreferredSize(new Dimension(120, 30));
+        crearCuentaButton.setForeground(Color.BLACK); // Letras blancas
+        crearCuentaButton.setContentAreaFilled(false);
+        loginNorte.add(crearCuentaButton);
+    
+        panelImagenLogin.add(loginNorte, BorderLayout.NORTH);
+        ventana2.setLocationRelativeTo(null);
+        ventana2.getContentPane().add(panelImagenLogin);
+        ventana2.setVisible(true);
+    
+        ventana2.revalidate();
+        ventana2.repaint();
+    }
+    
+
+
+
+    public void iniciarSesion() {
+        loginCenterP.removeAll();
+        loginCenterP.setOpaque(false);
+        
+        JLabel iniciarSesionLabel = new JLabel("Inicia sesión");
+        iniciarSesionLabel.setFont(new Font("Times New Roman", Font.BOLD, 20));
+        iniciarSesionLabel.setForeground(Color.BLACK);
+        loginCenterP.add(iniciarSesionLabel, BorderLayout.NORTH);
+    
+        JPanel formularioPanel = new JPanel();
+        formularioPanel.setLayout(new GridLayout(2, 2, 10, 10));
+        formularioPanel.setOpaque(false);
+    
+        JLabel etiquetaNombreUsuario = new JLabel("Nombre de Usuario:");
+        etiquetaNombreUsuario.setFont(new Font("Times New Roman", Font.BOLD, 14));
+        etiquetaNombreUsuario.setForeground(Color.BLACK);
+    
+        campoUsuario.setPreferredSize(new Dimension(150, 25));
+    
+        JLabel etiquetaContrasena = new JLabel("Contraseña:");
+        etiquetaContrasena.setFont(new Font("Times New Roman", Font.BOLD, 14));
+        etiquetaContrasena.setForeground(Color.BLACK);
+    
+        campoContrasena.setPreferredSize(new Dimension(150, 25));
+    
+        formularioPanel.add(etiquetaNombreUsuario);
+        formularioPanel.add(campoUsuario);
+        formularioPanel.add(etiquetaContrasena);
+        formularioPanel.add(campoContrasena);
+    
+        loginCenterP.add(formularioPanel, BorderLayout.CENTER); 
+    
+        botonIniciarSesion.setForeground(Color.BLACK); 
+        botonIniciarSesion.setContentAreaFilled(false);
+        loginCenterP.add(botonIniciarSesion, BorderLayout.SOUTH); 
+        panelImagenLogin.add(loginCenterP, BorderLayout.CENTER);
+        ventana2.revalidate();
+        ventana2.repaint();
+    }
+    
+    public void crearCuenta() {
+        loginCenterP.removeAll();
+        loginCenterP.setOpaque(false);
+    
+        JLabel crearCuentaLabel = new JLabel("Crear Cuenta");
+        crearCuentaLabel.setFont(new Font("Times New Roman", Font.BOLD, 20));
+        crearCuentaLabel.setForeground(Color.BLACK);
+        loginCenterP.add(crearCuentaLabel, BorderLayout.NORTH);
+    
+        JPanel formularioPanel = new JPanel(new GridLayout(0, 2, 5, 5));
+        formularioPanel.setOpaque(false);
+    
+        JLabel nombreDeUsuario = new JLabel("Nombre de usuario:");
+        nombreDeUsuario.setFont(new Font("Times New Roman", Font.BOLD, 14));
+        nombreDeUsuario.setForeground(Color.BLACK);
+    
+        JLabel fechaNacimientoLabel = new JLabel("Fecha de Nacimiento:");
+        fechaNacimientoLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
+        fechaNacimientoLabel.setForeground(Color.BLACK);
+    
+        JLabel sexoLabel = new JLabel("Sexo:");
+        sexoLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
+        sexoLabel.setForeground(Color.BLACK);
+        String[] opcionesSexo = {"Hombre", "Mujer"};
+        JComboBox<String> comboBoxSexo = new JComboBox<>(opcionesSexo);
+        sexoSeleccionado = (String) comboBoxSexo.getSelectedItem();
+    
+        JLabel correoLabel = new JLabel("Correo Electrónico:");
+        correoLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
+        correoLabel.setForeground(Color.BLACK);
+    
+        JLabel contrasenaLabel = new JLabel("Contraseña:");
+        contrasenaLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
+        contrasenaLabel.setForeground(Color.BLACK);
+    
+        crearCtaConductor.setForeground(Color.BLACK);
+        crearCtaConductor.setContentAreaFilled(false);
+    
+        crearButton.setForeground(Color.BLACK);
+        crearButton.setContentAreaFilled(false);
+    
+        formularioPanel.add(nombreDeUsuario);
+        formularioPanel.add(campoUsuario);
+        formularioPanel.add(fechaNacimientoLabel);
+        formularioPanel.add(campoFechaNacimiento);
+        formularioPanel.add(sexoLabel);
+        formularioPanel.add(comboBoxSexo);
+        formularioPanel.add(correoLabel);
+        formularioPanel.add(campoCorreo);
+        formularioPanel.add(contrasenaLabel);
+        formularioPanel.add(campoContrasena);
+        formularioPanel.add(crearCtaConductor);
+        formularioPanel.add(crearButton);
+    
+        loginCenterP.add(formularioPanel, BorderLayout.CENTER);
+        panelImagenLogin.add(loginCenterP, BorderLayout.CENTER);
+        ventana2.revalidate();
+        ventana2.repaint();
+    }
+    
+
+
+
+    public void crearCuentaConductor() {
+        loginCenterP.removeAll();
+        loginCenterP.setOpaque(false);
+    
+        JLabel graciasLabel = new JLabel("<html>¡GRACIAS por unirte!<br>Ahora necesitamos más información:</html>");
+        graciasLabel.setFont(new Font("Times New Roman", Font.BOLD, 15));
+        graciasLabel.setForeground(Color.BLACK);
+        loginCenterP.add(graciasLabel, BorderLayout.NORTH);
+    
+        JPanel formularioPanel = new JPanel(new GridLayout(0, 2, 30, 20));
+        formularioPanel.setOpaque(false);
+    
+        JLabel telefonoLabel = new JLabel("Número de Teléfono:");
+        telefonoLabel.setForeground(Color.BLACK);
+        formularioPanel.add(telefonoLabel);
+        formularioPanel.add(campoTelefono);
+    
+        JLabel estadoLabel = new JLabel("Estado:");
+        estadoLabel.setForeground(Color.BLACK);
+        formularioPanel.add(estadoLabel);
+        formularioPanel.add(campoEstado);
+    
+        JLabel municipioLabel = new JLabel("Municipio:");
+        municipioLabel.setForeground(Color.BLACK);
+        formularioPanel.add(municipioLabel);
+        formularioPanel.add(campoMunicipio);
+    
+        JLabel localidadLabel = new JLabel("Localidad:");
+        localidadLabel.setForeground(Color.BLACK);
+        formularioPanel.add(localidadLabel);
+        formularioPanel.add(campoLocalidad);
+    
+        finalizarButton.setForeground(Color.BLACK);
+        finalizarButton.setContentAreaFilled(false);
+        formularioPanel.add(finalizarButton);
+    
+        loginCenterP.add(formularioPanel, BorderLayout.CENTER);
+        panelImagenLogin.add(loginCenterP, BorderLayout.CENTER);
+    
+        ventana2.revalidate();
+        ventana2.repaint();
+    }
+     
+    
+
+
+    public void configuracion() {
+        config.setLayout(null);
+    
+        JLabel configuracionLabel = new JLabel("Configuración");
+        configuracionLabel.setForeground(Color.WHITE);
+        configuracionLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        configuracionLabel.setBounds(0, 10, 300, 30);
+        config.add(configuracionLabel);
+    
+        miInformacionButton.setBounds(50, 50, 200, 40);
+        modoOscuroButton.setBounds(50, 100, 200, 40);
+        acercaDe.setBounds(50, 150, 200, 40);
+    
+        miInformacionButton.setForeground(Color.WHITE);
+        miInformacionButton.setBackground(new Color(50, 50, 50));
+        miInformacionButton.setFocusPainted(false);
+    
+        modoOscuroButton.setForeground(Color.WHITE);
+        modoOscuroButton.setBackground(new Color(50, 50, 50));
+        modoOscuroButton.setFocusPainted(false);
+    
+        acercaDe.setForeground(Color.WHITE);
+        acercaDe.setBackground(new Color(50, 50, 50));
+        acercaDe.setFocusPainted(false);
+    
+        config.add(miInformacionButton);
+        config.add(modoOscuroButton);
+        config.add(acercaDe);
+    
+        JLabel versionLabel = new JLabel("Versión 0.1");
+        versionLabel.setForeground(Color.WHITE);
+        versionLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        versionLabel.setBounds(0, 210, 300, 30);
+        config.add(versionLabel);
+    
+        JDialog configuracionDialog = new JDialog();
+        configuracionDialog.setTitle("Configuración");
+        configuracionDialog.setModal(true);
+        configuracionDialog.getContentPane().add(config);
+    
+        configuracionDialog.setSize(300, 750);
+    
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        configuracionDialog.setLocation(screenSize.width - configuracionDialog.getWidth(), 0);
+    
+        configuracionDialog.setVisible(true);
+    }
+    
+
+
+
+
+    public void modoOscuro(){
+     //METODO PARA EL MODO OSCURO
+   }
+    public void miInformacion(){
+        //METODO PARA INFORMACION
+    }
+
+
+    public void buscar(String nombreConductor, ConfiguracionModel addUsuario) {
+        
         inicioP.removeAll();
-        inicioP.setBackground(Color.BLACK);
-
+        inicioP.setOpaque(false);
+    
         Font fuenteEtiqueta = new Font("Times New Roman", Font.BOLD, 14);
-        Color colorTexto = Color.WHITE;
-
+        Color colorTexto = Color.WHITE; 
+    
         List<Usuario> listaUsuarios = addUsuario.getListaUsuarios();
+    
 
-        inicioP.setLayout(new GridLayout(listaUsuarios.size(), 2));
-
-        Collections.shuffle(listaUsuarios);
-
+        Usuario conductorEncontrado = null;
         for (Usuario usuario : listaUsuarios) {
-            // Construir paneles y agregar contenido para cada usuario
-            JPanel usuarioPanel = new JPanel(new BorderLayout());
-            usuarioPanel.setBackground(new Color(30, 30, 30));
+            if (usuario.getNombre().equals(nombreConductor)) {
+                conductorEncontrado = usuario;
+                break;
+            }
+        }
+    
+        if (conductorEncontrado != null) {
+            JPanelImage usuarioPanel = new JPanelImage("CarHup/Imagenes/Fondo1.jpg");
+            
             usuarioPanel.setLayout(new GridLayout(1, 2));
 
-            // Subpanel para la foto
-            JPanel fotoPanel = new JPanel();
-            fotoPanel.setBackground(new Color(30, 30, 30));
-
-            JLabel fotoLabel = new JLabel("Foto de " + usuario.getNombre());
-            fotoLabel.setFont(fuenteEtiqueta);
-            fotoLabel.setForeground(colorTexto);
-            fotoLabel.setBackground(new Color(30, 30, 30));
-            fotoLabel.setOpaque(true); // Permitir que la etiqueta tenga fondo
+            JPanelImage fotoPanel = new JPanelImage("CarHup/Imagenes/Fondo1.jpg");
+            fotoPanel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+    
+            JLabel fotoLabel = new JLabel();
             fotoPanel.add(fotoLabel);
-
-            // Subpanel para la descripción
+    
             JPanel descripcionPanel = new JPanel();
-            descripcionPanel.setBackground(new Color(30, 30, 30));
+            descripcionPanel.setOpaque(false);
             descripcionPanel.setLayout(new GridLayout(4, 1));
-
-            JLabel nombreLabel = new JLabel("Nombre: " + usuario.getNombre());
+    
+            JLabel nombreLabel = new JLabel("Nombre: " + conductorEncontrado.getNombre());
             nombreLabel.setFont(fuenteEtiqueta);
             nombreLabel.setForeground(colorTexto);
-            nombreLabel.setBackground(new Color(30, 30, 30));
-            nombreLabel.setOpaque(true);
             descripcionPanel.add(nombreLabel);
-
-            JLabel fechaNacimientoLabel = new JLabel("Fecha de Nacimiento: " + usuario.getFechaNacimiento());
+    
+            JLabel fechaNacimientoLabel = new JLabel("Fecha de Nacimiento: " + conductorEncontrado.getFechaNacimiento());
             fechaNacimientoLabel.setFont(fuenteEtiqueta);
             fechaNacimientoLabel.setForeground(colorTexto);
-            fechaNacimientoLabel.setBackground(new Color(30, 30, 30));
-            fechaNacimientoLabel.setOpaque(true);
             descripcionPanel.add(fechaNacimientoLabel);
-
-            JLabel correoLabel = new JLabel("Correo: " + usuario.getCorreo());
+    
+            JLabel correoLabel = new JLabel("Correo: " + conductorEncontrado.getCorreo());
             correoLabel.setFont(fuenteEtiqueta);
             correoLabel.setForeground(colorTexto);
-            correoLabel.setBackground(new Color(30, 30, 30));
-            correoLabel.setOpaque(true);
             descripcionPanel.add(correoLabel);
-
-            // Botón "Llamar"
+    
             JButton llamarButton = new JButton("Llamar");
-            llamarButton.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    // Lógica para llamar al usuario
-                    JOptionPane.showMessageDialog(null, "Llamando a " + usuario.getNombre());
-                }
-            });
-
+            llamarButton.setForeground(Color.WHITE);
+            llamarButton.setBackground(Color.BLACK);
+    
             descripcionPanel.add(llamarButton);
             usuarioPanel.add(fotoPanel);
             usuarioPanel.add(descripcionPanel);
-            usuarioPanel.setBorder(BorderFactory.createLineBorder(new Color(255, 140, 0)));
+            usuarioPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
             inicioP.add(usuarioPanel);
+    
+            if (barraDesplazamiento == null) {
+                barraDesplazamiento = new JScrollPane(inicioP);
+                barraDesplazamiento.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+                barraDesplazamiento.setOpaque(false);
+                barraDesplazamiento.getViewport().setOpaque(false); 
+                fondoPanel.add(barraDesplazamiento, BorderLayout.CENTER);
+            } else {
+               
+                barraDesplazamiento.setViewportView(inicioP);
+            }
+    
+            fondoPanel.revalidate();
         }
+    }
+    
+    
+
+
+    public void inicio() {
+        inicioP.removeAll();
+        inicioP.setOpaque(false);
+    
+        JPanel principal = new JPanel();
+        principal.setLayout(new FlowLayout(FlowLayout.CENTER)); 
+        principal.setOpaque(false);
+    
+        JLabel tituloGrande = new JLabel("La movilidad del Futuro llegó");
+        tituloGrande.setFont(new Font("Arial", Font.BOLD, 65));
+        tituloGrande.setForeground(Color.BLACK);
+        principal.add(tituloGrande);
+    
+        JLabel tituloMediano = new JLabel("La experiencia de autoconductor más seguro con Car Hup");
+        tituloMediano.setFont(new Font("Arial", Font.BOLD, 35));
+        tituloMediano.setForeground(Color.BLACK);
+        principal.add(tituloMediano);
+    
+        inicioP.setLayout(new BorderLayout());
+        inicioP.add(principal, BorderLayout.CENTER);
+    
+        fondoPanel.setOpaque(false);
+        fondoPanel.setBackground(new Color(0, 0, 0));
+        fondoPanel.add(inicioP, BorderLayout.CENTER);
+        fondoPanel.revalidate();
+    }
+    
+    
+    public void sugerencias(ConfiguracionModel addUsuario) {
+        inicioP.removeAll();
+        inicioP.setOpaque(false);
+    
+        Font fuenteEtiqueta = new Font("Times New Roman", Font.BOLD, 14);
+        Color colorTexto = Color.WHITE; 
+    
+        List<Usuario> listaUsuarios = addUsuario.getListaUsuarios();
+    
+        inicioP.setLayout(new GridLayout(listaUsuarios.size(), 2));
+    
+        Collections.shuffle(listaUsuarios);
+        for (Usuario usuario : listaUsuarios) {
+            if (usuario.getEsConductor()) {
+                JPanelImage usuarioPanel = new JPanelImage("CarHup/Imagenes/Fondo1.jpg");
+                usuarioPanel.setLayout(new GridLayout(1, 2));
+
+                JPanelImage fotoPanel = new JPanelImage("CarHup/Imagenes/Fondo1.jpg");
+                fotoPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+    
+                JLabel fotoLabel = new JLabel();
+                fotoPanel.add(fotoLabel);
+    
+                JPanel descripcionPanel = new JPanel();
+                descripcionPanel.setOpaque(false);
+                descripcionPanel.setLayout(new GridLayout(4, 1));
+    
+                JLabel nombreLabel = new JLabel("Nombre: " + usuario.getNombre());
+                nombreLabel.setFont(fuenteEtiqueta);
+                nombreLabel.setForeground(colorTexto);
+                descripcionPanel.add(nombreLabel);
+    
+                JLabel fechaNacimientoLabel = new JLabel("Fecha de Nacimiento: " + usuario.getFechaNacimiento());
+                fechaNacimientoLabel.setFont(fuenteEtiqueta);
+                fechaNacimientoLabel.setForeground(colorTexto);
+                descripcionPanel.add(fechaNacimientoLabel);
+    
+                JLabel correoLabel = new JLabel("Correo: " + usuario.getCorreo());
+                correoLabel.setFont(fuenteEtiqueta);
+                correoLabel.setForeground(colorTexto);
+                descripcionPanel.add(correoLabel);
+    
+                JButton llamarButton = new JButton("Llamar");
+                llamarButton.setForeground(Color.WHITE);
+                llamarButton.setBackground(Color.BLACK);
+    
+                descripcionPanel.add(llamarButton);
+                usuarioPanel.add(fotoPanel);
+                usuarioPanel.add(descripcionPanel);
+                usuarioPanel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+                inicioP.add(usuarioPanel);
+            }
+        }
+    
 
         if (barraDesplazamiento == null) {
             barraDesplazamiento = new JScrollPane(inicioP);
             barraDesplazamiento.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-            getContentPane().add(barraDesplazamiento, BorderLayout.CENTER);
+            barraDesplazamiento.setOpaque(false); 
+            barraDesplazamiento.getViewport().setOpaque(false); 
+    
+            fondoPanel.add(barraDesplazamiento, BorderLayout.CENTER);
         } else {
             barraDesplazamiento.setViewportView(inicioP);
         }
-        revalidate();
-    }
-
-    
-        
-    private void login() {
-        ventana2.setVisible(true);
-        ventana2.setSize(400, 500);
-        ventana2.setLocationRelativeTo(null);
-        ventana2.setTitle("Iniciar sesión o Crear Cuenta");
-        ventana2.setIconImage(logoVna.getImage());
-        ventana2.setLayout(new BorderLayout());
-
-        loginNorte.setLayout(null);
-        loginNorte.setBackground(Color.BLACK);
-        loginNorte.setPreferredSize(new Dimension(900, 140));
-
-        JLabel inicioCrear = new JLabel("¿Eres nuevo o ya tienes una cuenta?");
-        inicioCrear.setFont(new Font("Times New Roman", Font.BOLD, 23));
-        inicioCrear.setBounds(10, 14, 400, 100);
-        inicioCrear.setForeground(Color.WHITE);
-
-        JLabel loginImagen = new JLabel();
-        loginImagen.setIcon(new ImageIcon(logoVna.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH)));
-        loginImagen.setBounds(150, 0, 200, 100);
-
-        JButton iniciarSesionButton = new JButton("Iniciar sesión");
-        JButton crearCuentaButton = new JButton("Crear Cuenta");
-
-        iniciarSesionButton.setBounds(50, 100, 120, 20);
-        crearCuentaButton.setBounds(200, 100, 120, 20);
-
-        JPanel loginCenterP = new JPanel();
-        loginCenterP.setBackground(new Color(30, 30, 30));
-        loginCenterP.setLayout(null);
-        loginCenterP.setPreferredSize(new Dimension(900,900));
-
-        
-        crearCuentaButton.addActionListener(e -> crearCuenta(loginCenterP));
-        iniciarSesionButton.addActionListener(e -> iniciarSesion(loginCenterP));
-
-        loginNorte.add(iniciarSesionButton);
-        loginNorte.add(crearCuentaButton);
-        loginNorte.add(inicioCrear);
-        loginNorte.add(loginImagen);
-        ventana2.getContentPane().add(loginNorte, BorderLayout.NORTH);
-        ventana2.getContentPane().setBackground(new Color(30,30,30));
-    }
-
-    private void iniciarSesion(JPanel loginCenterP) {
-        loginCenterP.removeAll();
-        
-        JLabel iniciarSecion = new JLabel("Inicia sesion");
-        iniciarSecion.setFont(new Font("Times New Roman", Font.BOLD, 20));
-        iniciarSecion.setForeground(Color.WHITE);
-        iniciarSecion.setBounds(20, 10, 200, 30);
-        loginCenterP.add(iniciarSecion);
-
-        JLabel etiquetaNombreUsuario = new JLabel("Nombre de Usuario:");
-        JTextField campoNombreUsuario = new JTextField();
-    
-        JLabel etiquetaContrasena = new JLabel("Contraseña:");
-        JPasswordField campoContrasena = new JPasswordField();
-
-        Font fuenteEtiqueta = new Font("Times New Roman", Font.BOLD, 14);
-        Color colorTexto = Color.WHITE;
-
-        etiquetaContrasena.setFont(fuenteEtiqueta);
-        etiquetaContrasena.setForeground(colorTexto);
-
-        etiquetaNombreUsuario.setFont(fuenteEtiqueta);
-        etiquetaNombreUsuario.setForeground(colorTexto);
-
-
-    
-        // Botón de inicio de sesión
-        JButton botonIniciarSesion = new JButton("Iniciar Sesión");
-        botonIniciarSesion.addActionListener(e -> iniciarDatos());
-    
-        
-        etiquetaNombreUsuario.setBounds(20, 45, 150, 25);
-        campoNombreUsuario.setBounds(190, 45, 150, 25);
-    
-        etiquetaContrasena.setBounds(20, 80, 150, 25);
-        campoContrasena.setBounds(190, 80, 150, 25);
-    
-        botonIniciarSesion.setBounds(20, 120, 300, 25);
-    
-        
-        loginCenterP.add(etiquetaNombreUsuario);
-        loginCenterP.add(campoNombreUsuario);
-        loginCenterP.add(etiquetaContrasena);
-        loginCenterP.add(campoContrasena);
-        loginCenterP.add(botonIniciarSesion);
-
-        ventana2.getContentPane().add(loginCenterP, BorderLayout.CENTER);
-        ventana2.revalidate();
-        ventana2.repaint();
-    }
-    
-   
-   private void crearCuenta(JPanel loginCenterP) {
-    Usuario cuenta;
-    cuenta = new Usuario();
-    loginCenterP.removeAll();
-
-    // Etiqueta "Crear Cuenta"
-    JLabel crearCuentaLabel = new JLabel("Crear Cuenta");
-    crearCuentaLabel.setFont(new Font("Times New Roman", Font.BOLD, 20));
-    crearCuentaLabel.setForeground(Color.WHITE);
-    crearCuentaLabel.setBounds(50, 10, 200, 30);
-    loginCenterP.add(crearCuentaLabel);
-
-    // Etiquetas y componentes restantes
-    JLabel nombreDeUsuario = new JLabel("Nombre de usuario:");
-    JTextField campoUsuario = new JTextField(20);
-    cuenta.setNombre(campoUsuario.getText());
-    
-
-    JLabel fechaNacimientoLabel = new JLabel("Fecha de Nacimiento:");
-    JTextField campoFechaNacimiento = new JTextField(20);
-    cuenta.setFechaNacimiento(campoFechaNacimiento.getText());
-
-    JLabel sexoLabel = new JLabel("Sexo:");
-    String[] opcionesSexo = {"Hombre", "Mujer"};
-    JComboBox<String> comboBoxSexo = new JComboBox<>(opcionesSexo);
-    cuenta.setSexo((String) comboBoxSexo.getSelectedItem());
-
-    JLabel correoLabel = new JLabel("Correo Electrónico:");
-    JTextField campoCorreo = new JTextField(20);
-    cuenta.setCorreo(campoCorreo.getText());
-
-    JLabel contrasenaLabel = new JLabel("Contraseña:");
-    JPasswordField campoContrasena = new JPasswordField(20);
-    cuenta.setPassaword(campoContrasena.getText());
-
-    JButton crearCtaConductor = new JButton("Crear Cuenta conductor");
-    JButton crearButton = new JButton("Crear");
-
-    // Aplicar estilo a las etiquetas
-    Font fuenteEtiqueta = new Font("Times New Roman", Font.BOLD, 14);
-    Color colorTexto = Color.WHITE;
-
-    fechaNacimientoLabel.setFont(fuenteEtiqueta);
-    fechaNacimientoLabel.setForeground(colorTexto);
-
-    sexoLabel.setFont(fuenteEtiqueta);
-    sexoLabel.setForeground(colorTexto);
-
-    correoLabel.setFont(fuenteEtiqueta);
-    correoLabel.setForeground(colorTexto);
-
-    contrasenaLabel.setFont(fuenteEtiqueta);
-    contrasenaLabel.setForeground(colorTexto);
-
-    nombreDeUsuario.setFont(fuenteEtiqueta);
-    nombreDeUsuario.setForeground(colorTexto);
-
-
-    // Posiciones de las etiquetas y componentes
-    nombreDeUsuario.setBounds(50, 50, 150, 20);
-    campoUsuario.setBounds(200, 50, 120, 20);
-
-    fechaNacimientoLabel.setBounds(50, 80, 150, 20);
-    campoFechaNacimiento.setBounds(200, 80, 120, 20);
-
-    sexoLabel.setBounds(50, 110, 150, 20);
-    comboBoxSexo.setBounds(200, 110, 120, 20);
-
-    correoLabel.setBounds(50, 140, 150, 20);
-    campoCorreo.setBounds(200, 140, 120, 20);
-
-    contrasenaLabel.setBounds(50, 170, 150, 20);
-    campoContrasena.setBounds(200, 170, 120, 20);
-
-    crearCtaConductor.setBounds(195, 220, 175, 20);
-    crearButton.setBounds(50, 220, 100, 20);
-
-    // Agregar componentes al panel
-    loginCenterP.add(nombreDeUsuario);
-    loginCenterP.add(campoUsuario);
-    loginCenterP.add(fechaNacimientoLabel);
-    loginCenterP.add(campoFechaNacimiento);
-    loginCenterP.add(sexoLabel);
-    loginCenterP.add(comboBoxSexo);
-    loginCenterP.add(correoLabel);
-    loginCenterP.add(campoCorreo);
-    loginCenterP.add(contrasenaLabel);
-    loginCenterP.add(campoContrasena);
-    loginCenterP.add(crearCtaConductor);
-    loginCenterP.add(crearButton);
-
-    
-
-    crearCtaConductor.addActionListener(e -> crearCuentaConductor(loginCenterP, cuenta));
-    crearButton.addActionListener(e -> guardarDatos(cuenta));
-
-    ventana2.getContentPane().add(loginCenterP, BorderLayout.CENTER);
-    ventana2.revalidate();
-    ventana2.repaint();
-    }
-
-    private void guardarDatos(Usuario cuenta){
-       addUsuario.agregarUsuario(cuenta);
-       JOptionPane.showMessageDialog(null,"Creado Corectamente :D!!!");
-                
-       
-    }
-
-
-    private void iniciarDatos(){
-    //Logica para iniciar session
+        fondoPanel.revalidate();
     }
     
 
-    private void crearCuentaConductor(JPanel loginCenterP, Usuario cuenta) {
-        loginCenterP.removeAll();  // Limpiar el panel existente
-    
-        // Etiqueta de agradecimiento
-        JLabel graciasLabel = new JLabel("<html>¡GRACIAS por unirte!<br>Ahora necesitamos más información:</html>");
-        graciasLabel.setFont(new Font("Times New Roman", Font.BOLD, 16));
-        graciasLabel.setForeground(Color.WHITE);
-        graciasLabel.setBounds(50, 10, 400, 50);
-    
-        // Nuevos campos de información
-        JLabel telefonoLabel = new JLabel("Número de Teléfono:");
-        JTextField campoTelefono = new JTextField();
-        cuenta.setNumeroDeTelefono(campoTelefono.getText());
-    
-        JLabel estadoLabel = new JLabel("Estado:");
-        JTextField campoEstado = new JTextField();
-        cuenta.setEstado(campoEstado.getText());
-    
-        JLabel municipioLabel = new JLabel("Municipio:");
-        JTextField campoMunicipio = new JTextField();
-        cuenta.setMunicipio(campoMunicipio.getText());
-    
-        JLabel localidadLabel = new JLabel("Localidad:");
-        JTextField campoLocalidad = new JTextField();
-         cuenta.setLocalidad(campoLocalidad.getText());
-
-         cuenta.setEsConductor(true);
-        JButton finalizarButton = new JButton("Finalizar");
-
-        finalizarButton.addActionListener(e -> guardarDatos(cuenta));
-        // Estilo para las etiquetas
-        Font fuenteEtiqueta = new Font("Times New Roman", Font.BOLD, 14);
-        Color colorTexto = Color.WHITE;
-    
-
-        telefonoLabel.setFont(fuenteEtiqueta);
-        telefonoLabel.setForeground(colorTexto);
-    
-        estadoLabel.setFont(fuenteEtiqueta);
-        estadoLabel.setForeground(colorTexto);
-    
-        municipioLabel.setFont(fuenteEtiqueta);
-        municipioLabel.setForeground(colorTexto);
-    
-        localidadLabel.setFont(fuenteEtiqueta);
-        localidadLabel.setForeground(colorTexto);
-    
-        // Posiciones de los nuevos componentes
-        telefonoLabel.setBounds(50, 70, 150, 20);
-        campoTelefono.setBounds(200, 70, 120, 20);
-    
-        estadoLabel.setBounds(50, 100, 150, 20);
-        campoEstado.setBounds(200, 100, 120, 20);
-    
-        municipioLabel.setBounds(50, 130, 150, 20);
-        campoMunicipio.setBounds(200, 130, 120, 20);
-    
-        localidadLabel.setBounds(50, 160, 150, 20);
-        campoLocalidad.setBounds(200, 160, 120, 20);
-    
-        finalizarButton.setBounds(50, 200, 120, 30);
-    
-        // Agregar fondo al panel
-        loginCenterP.setBackground(new Color(30, 30, 30));
-    
-        // Agregar componentes al panel
-        loginCenterP.add(graciasLabel);
-        loginCenterP.add(telefonoLabel);
-        loginCenterP.add(campoTelefono);
-        loginCenterP.add(estadoLabel);
-        loginCenterP.add(campoEstado);
-        loginCenterP.add(municipioLabel);
-        loginCenterP.add(campoMunicipio);
-        loginCenterP.add(localidadLabel);
-        loginCenterP.add(campoLocalidad);
-        loginCenterP.add(finalizarButton);
-    
-        // Agregar el panel al contenido de la ventana2
-        ventana2.getContentPane().add(loginCenterP, BorderLayout.CENTER);
-    
-        // Refrescar la ventana2
-        ventana2.revalidate();
-        ventana2.repaint();
-    }
-    
-    
-
-    private void buscarConductor() {
-        // Implementar funcionalidad de búsqueda de conductor
+    public void setNombreLabel(JLabel nombreLabel) {
+        this.nombreLabel = nombreLabel;
     }
 
-    private void configuracion() {
-        // Crear el panel de configuración
-        JPanel config = new JPanel();
-        config.setBackground(new Color(30, 30, 30));
-    
-        // Configurar los componentes y sus posiciones
-        JButton miInformacionButton = new JButton("Mi Información");
-        miInformacionButton.setBounds(50, 50, 140, 30); // x, y, width, height
-        miInformacionButton.addActionListener(e -> miInformacion(config));
-        config.add(miInformacionButton);
-    
-        JButton temaButton = new JButton("Modo Oscuro");
-        temaButton.setBounds(50, 100, 140, 30);
-        temaButton.addActionListener(e -> modoOscuro(config));
-        config.add(temaButton);
-    
-        // Crear el diálogo de configuración
-        JDialog configuracionDialog = new JDialog();
-        configuracionDialog.setTitle("Configuración");
-        configuracionDialog.setModal(true);
-        configuracionDialog.getContentPane().add(config); // Añadir el panel al diálogo
-    
-        // Obtener las dimensiones de la pantalla
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int height = screenSize.height;
-        int width = screenSize.width;
-    
-        // Configurar el tamaño del diálogo para que abarque todo el largo de la pantalla
-        configuracionDialog.setSize(300, height);
-    
-        // Configurar la ubicación del diálogo para que se abra en la parte derecha de la pantalla
-        configuracionDialog.setLocation(width - configuracionDialog.getWidth(), 0);
-    
-        // Hacer visible el diálogo
-        configuracionDialog.setVisible(true);
-        JLabel configuracionLabel = new JLabel("Configuración");
-    
-        // Añadir el logo y el texto al panel
-        config.add(configuracionLabel);
-
+    public void setNumeroDeTelefonoLabel(JLabel numeroDeTelefonoLabel) {
+        this.numeroDeTelefonoLabel = numeroDeTelefonoLabel;
     }
 
-    private void modoOscuro(JPanel config){
-       JLabel Activado = new JLabel("Activado");
-       JLabel Desactivado = new JLabel("Desactivado");
 
-    Activado.setBounds(50, 150, 140, 30);
-    Activado.setForeground(Color.CYAN);
-    Desactivado.setBounds(50, 200, 140, 30);
-    Desactivado.setForeground(Color.CYAN);
-
-    config.add(Activado);
-    config.add(Desactivado);
-
-    config.revalidate();
-    config.repaint();
-}
-    private void miInformacion(JPanel config){
-
+    public JButton getLlamarButton() {
+        return llamarButton;
     }
 
-    private void inicio() {
-
-    }
-    
-    
-    
-    public void actionPerformed(ActionEvent e) {
-      
-    
-        if (e.getSource() == configuracionButton) {
-            configuracion();
-        } else if (e.getSource() == buscarButton) {
-            buscar();
-        } else if (e.getSource() == loginButton) {
-            login();
-        } 
+    public JLabel getNombreLabel() {
+        return nombreLabel;
     }
 
+    public JLabel getNumeroDeTelefonoLabel() {
+        return numeroDeTelefonoLabel;
+    }
+
+  
+    public JTextField getBuscarField() {
+        return buscarField;
+    }
+
+
+    public JLabel getCorreoLabel() {
+        return correoLabel;
+    }
+
+    public void setEdadLabel(JLabel edadLabel) {
+        this.edadLabel = edadLabel;
+    }
+
+    public JTextField getCampoCorreo() {
+        return campoCorreo;
+    }
+
+
+    public JLabel getEdadLabel() {
+        return edadLabel;
+    }
+
+
+    public JButton getResert() {
+        return resert;
+    }
+
+    public String getSexoSeleccionado() {
+        return sexoSeleccionado;
+    }
+
+
+    public JButton getInicioButton() {
+        return inicioButton;
+    }
+
+    public JButton getBuscarButton() {
+        return buscarButton;
+    }
+
+    public JButton getLoginButton() {
+        return loginButton;
+    }
+
+    public JButton getConfiguracionButton() {
+        return configuracionButton;
+    }
+
+   public JButton getIniciarSesionButton() {
+       return iniciarSesionButton;
+   }
+
+   public JButton getBotonIniciarSesion() {
+       return botonIniciarSesion;
+   }
+
+   public JButton getCrearCuentaButton() {
+       return crearCuentaButton;
+   }
+
+   public JButton getFinalizarButton() {
+       return finalizarButton;
+   }
+
+   public JButton getCrearCtaConductor() {
+       return crearCtaConductor;
+   }
+
+   public JButton getMiInformacionButton() {
+       return miInformacionButton;
+   }
+
+   public JPanel getNorte() {
+       return norte;
+   }
+
+
+   public JButton getModoOscuroButton() {
+       return modoOscuroButton;
+   }
+
+   public JButton getCrearButton() {
+       return crearButton;
+   }
+
+   public JTextField getCampoTelefono() {
+       return campoTelefono;
+   }
+
+   public JButton getBuscarCButton() {
+       return buscarCButton;
+   }
+
+   public JTextField getCampoUsuario() {
+       return campoUsuario;
+   }
+
+   public JTextField getCampoFechaNacimiento() {
+       return campoFechaNacimiento;
+   }
+
+
+   public JPasswordField getCampoContrasena() {
+       return campoContrasena;
+   }
+
+
+   public JTextField getCampoEstado() {
+       return campoEstado;
+   }
+
+
+
+   public JTextField getCampoLocalidad() {
+       return campoLocalidad;
+   }
+
+
+    public JTextField getCampoMunicipio() {
+        return campoMunicipio;
+    }
+
+    public JPanel getBuscador() {
+        return buscador;
+    }
+
+<<<<<<< HEAD
     public static void main(String[] args) {,
         CarHup car = new CarHup();
     } 
 
+=======
+    public static void main(String[] args) {
+        CarHupControlle c = new CarHupControlle();
+    }
+>>>>>>> b429a9480ff87adf14d385798346b88392c28415
 }
 
