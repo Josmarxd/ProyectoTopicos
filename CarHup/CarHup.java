@@ -474,7 +474,7 @@ public class CarHup extends JFrame{
             correoLabel.setForeground(colorTexto);
             descripcionPanel.add(correoLabel);
     
-            JButton llamarButton = new JButton("Llamar");
+            JButton llamarButton = new JButton("Reservar");
             llamarButton.setForeground(Color.WHITE);
             llamarButton.setBackground(Color.BLACK);
     
@@ -559,7 +559,7 @@ public class CarHup extends JFrame{
     
                 JLabel nombreLabel = new JLabel("Nombre: " + usuario.getNombre());
                 nombreLabel.setFont(fuenteEtiqueta);
-                nombreLabel.setForeground(colorTexto);
+                nombreLabel.setForeground(colorTexto); 
                 descripcionPanel.add(nombreLabel);
     
                 JLabel fechaNacimientoLabel = new JLabel("Fecha de Nacimiento: " + usuario.getFechaNacimiento());
@@ -572,7 +572,7 @@ public class CarHup extends JFrame{
                 correoLabel.setForeground(colorTexto);
                 descripcionPanel.add(correoLabel);
     
-                JButton llamarButton = new JButton("Llamar");
+                JButton llamarButton = new JButton("Reservar");
                 llamarButton.setForeground(Color.WHITE);
                 llamarButton.setBackground(Color.BLACK);
     
