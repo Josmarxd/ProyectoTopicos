@@ -53,7 +53,6 @@ public class CarHup extends JFrame{
     private JPanelImage fondoPanel;
     private JButton acercaDe;
     private JButton acercaDe2;
-    private JButton sugerenciasButton;
     private JButton cuentaButton;
     
 
@@ -61,8 +60,8 @@ public class CarHup extends JFrame{
        
     public CarHup(String nombre) {
         super(nombre);
-        sugerenciasButton = new JButton("Sugerencias");
-        sugerenciasButton.addActionListener(e -> abrirConductorInter());
+        cuentaButton = new JButton("cuenta"); 
+        cuentaButton.addActionListener(e -> abrirConductorInter());
         setVisible(true);
         buscador = new JPanel();
         infFot = new JPanel();
@@ -123,11 +122,10 @@ public class CarHup extends JFrame{
     }
     private void abrirConductorInter() {
         // Crear e inicializar la nueva interfaz
-        ConductorInter ConductorInter = new ConductorInter();
+        ConductorInter conductorInter = new ConductorInter();
         // Hacer visible la nueva interfaz
-        ConductorInter.setVisible(true);
+        conductorInter.setVisible(true);
     }
-
     
 
 
@@ -182,9 +180,7 @@ public class CarHup extends JFrame{
         buscarButton.setFont(new Font("Aptos", Font.PLAIN, 18));
         panelBotones.add(buscarButton);
     
-        loginButton.setContentAreaFilled(false);
-        loginButton.setFont(new Font("Aptos", Font.PLAIN, 18));
-        panelBotones.add(loginButton);
+        
     
         norte.add(panelBotones);
         fondoPanel.add(norte, BorderLayout.NORTH);
@@ -381,6 +377,9 @@ public class CarHup extends JFrame{
         ventana2.revalidate();
         ventana2.repaint();
     }
+   
+
+
     public void configuracion() {
         config.setLayout(null);
     
