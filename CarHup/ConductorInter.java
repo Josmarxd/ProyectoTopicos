@@ -2,28 +2,31 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ConductorInter extends JFrame {
-    private JPanel panel;
-
     public ConductorInter() {
         setTitle("Nueva Interfaz");
-        setSize(800, 600); // Tamaño de la ventana
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Cierra la aplicación al cerrar la ventana
+        setSize(400, 300);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Cierra solo esta ventana al presionar el botón de cerrar
+        setLocationRelativeTo(null); // Centra la ventana en la pantalla
 
-        // Crear un panel para colocar componentes
-        panel = new JPanel();
-        panel.setLayout(new BorderLayout());
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(2, 1)); // Dos filas, una para cada botón
+
+        JButton solicitudesButton = new JButton("Solicitudes");
+        JButton perfilButton = new JButton("Perfil");
+
+        panel.add(solicitudesButton);
+        panel.add(perfilButton);
+
         add(panel);
 
-        // Agregar componentes a tu nueva interfaz
-        JLabel label = new JLabel("¡Esta es tu nueva interfaz!");
-        panel.add(label, BorderLayout.CENTER);
+        solicitudesButton.addActionListener(e -> {
+            // Código para manejar la acción del botón de solicitudes
+            JOptionPane.showMessageDialog(this, "Botón de Solicitudes presionado");
+        });
 
-        // Mostrar la interfaz
-        setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        // Crear una instancia de la nueva interfaz en el método main para probarla
-        SwingUtilities.invokeLater(() -> new ConductorInter());
+        perfilButton.addActionListener(e -> {
+            // Código para manejar la acción del botón de perfil
+            JOptionPane.showMessageDialog(this, "Botón de Perfil presionado");
+        });
     }
 }

@@ -65,22 +65,22 @@ public void actionPerformed(ActionEvent e) {
     
 
     public void botonesInternos(){ 
-        ventana.getFinalizarButton().addActionListener(e->addUsuarioC()); 
+        ventana.getFinalizarButton().addActionListener(e -> addUsuarioC());
         ventana.getIniciarSesionButton().addActionListener(e -> ventana.iniciarSesion());
-        ventana.getCrearCuentaButton().addActionListener(e->ventana.crearCuenta());
-        ventana.getCrearButton().addActionListener(e-> addUsuario());
-        ventana.getIniciarSesionButton().addActionListener(e->iniciarSesion());
-        ventana.getMiInformacionButton().addActionListener(e->ventana.miInformacion());
-        ventana.getModoOscuroButton().addActionListener(e->ventana.modoOscuro());
-        ventana.getCrearCtaConductor().addActionListener(e->ventana.crearCuentaConductor());
-        ventana.getResert().addActionListener(e-> ventana.sugerencias(addU));
-        ventana.getBuscarCButton().addActionListener(e -> ventana.buscar(ventana.getBuscarField().getText(), addU)); 
+        ventana.getCrearCuentaButton().addActionListener(e -> ventana.crearCuenta());
+        ventana.getCrearButton().addActionListener(e -> addUsuario());
+        ventana.getIniciarSesionButton().addActionListener(e -> iniciarSesion());
+        ventana.getMiInformacionButton().addActionListener(e -> ventana.miInformacion());
+        ventana.getModoOscuroButton().addActionListener(e -> ventana.modoOscuro());
+        ventana.getCrearCtaConductor().addActionListener(e -> ventana.crearCuentaConductor());
+        ventana.getResert().addActionListener(e -> ventana.sugerencias(addU));
+        ventana.getBuscarCButton().addActionListener(e -> ventana.buscar(ventana.getBuscarField().getText(), addU));
         ventana.getInicioButton().addActionListener(this);
         ventana.getLoginButton().addActionListener(this);
         ventana.getConfiguracionButton().addActionListener(this);
-        ventana.getBuscarButton().addActionListener(this); 
-        
+        ventana.getBuscarButton().addActionListener(this);
     }
+    
     
     
     public void iniciarSesion(){

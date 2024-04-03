@@ -53,12 +53,17 @@ public class CarHup extends JFrame{
     private JPanelImage fondoPanel;
     private JButton acercaDe;
     private JButton acercaDe2;
+    private JButton sugerenciasButton;
+    private JButton cuentaButton;
     
 
     
        
     public CarHup(String nombre) {
         super(nombre);
+        sugerenciasButton = new JButton("Sugerencias");
+        sugerenciasButton.addActionListener(e -> abrirConductorInter());
+        setVisible(true);
         buscador = new JPanel();
         infFot = new JPanel();
         inicioP = new JPanel();
@@ -69,13 +74,10 @@ public class CarHup extends JFrame{
         norte = new JPanel();
         nombreCarHup = new JLabel("CARHUP");
         inicioButton = new JButton("Inicio");
-    
         buscarImagen = new ImageIcon("CarHup/Imagenes/Buscar.png");
         buscarButton = new BotonImagen(buscarImagen);
-    
         loginImagen = new ImageIcon("CarHup/Imagenes/Cuenta.png");
         loginButton = new BotonImagen(loginImagen);
-        
         configuracionButton = new JButton("Configuración");
         modoOscuroButton = new JButton("Modo Oscuro");
         miInformacionButton = new JButton("Mi Información");
@@ -85,8 +87,9 @@ public class CarHup extends JFrame{
         textoColorBlack = Color.BLACK;
         acercaDe = new JButton("Sugerencias");
         informacioPanel = new JPanel();
-
         acercaDe2 = new JButton("Acerca De");
+        cuentaButton = new JButton("Cuenta");
+        
 
     
         // Buscar
@@ -118,6 +121,13 @@ public class CarHup extends JFrame{
         panelImagenLogin = new JPanelImage("CarHup/Imagenes/Fondo.png");
         init();
     }
+    private void abrirConductorInter() {
+        // Crear e inicializar la nueva interfaz
+        ConductorInter ConductorInter = new ConductorInter();
+        // Hacer visible la nueva interfaz
+        ConductorInter.setVisible(true);
+    }
+
     
 
 
@@ -136,7 +146,7 @@ public class CarHup extends JFrame{
 
     private void norte() {
         norte.setPreferredSize(new Dimension(800, 200));
-        norte.setLayout(new FlowLayout(FlowLayout.LEFT, 200, 50));
+        norte.setLayout(new FlowLayout(FlowLayout.LEFT, 100, 100)); // Ajusta los valores de espaciado según tu preferencia
         norte.setOpaque(false);
     
         nombreCarHup.setFont(new Font("Aptos", Font.BOLD, 30));
@@ -146,8 +156,8 @@ public class CarHup extends JFrame{
     
         JPanel panelBotones = new JPanel();
         panelBotones.setOpaque(false);
-        panelBotones.setLayout(new FlowLayout(FlowLayout.LEFT, 35, 0));
-        
+        panelBotones.setLayout(new FlowLayout(FlowLayout.LEFT, 20, 0)); // Ajusta el espaciado entre botones aquí
+    
         inicioButton.setContentAreaFilled(false);
         inicioButton.setFont(new Font("Aptos", Font.PLAIN, 18));
         inicioButton.setPreferredSize(new Dimension(100, 50));
@@ -158,8 +168,14 @@ public class CarHup extends JFrame{
         configuracionButton.setPreferredSize(new Dimension(150, 50));
         panelBotones.add(configuracionButton);
     
+        cuentaButton.setContentAreaFilled(false);
+        cuentaButton.setFont(new Font("Aptos", Font.PLAIN, 18));
+        cuentaButton.setPreferredSize(new Dimension(100, 50));
+        panelBotones.add(cuentaButton);
+    
         resert.setContentAreaFilled(false);
         resert.setFont(new Font("Aptos", Font.PLAIN, 18));
+        resert.setPreferredSize(new Dimension(150, 50));
         panelBotones.add(resert);
     
         buscarButton.setContentAreaFilled(false);
@@ -169,12 +185,11 @@ public class CarHup extends JFrame{
         loginButton.setContentAreaFilled(false);
         loginButton.setFont(new Font("Aptos", Font.PLAIN, 18));
         panelBotones.add(loginButton);
-        
-
     
         norte.add(panelBotones);
         fondoPanel.add(norte, BorderLayout.NORTH);
     }
+    
     
     public void login() {
         ventana2.setSize(400, 500);
