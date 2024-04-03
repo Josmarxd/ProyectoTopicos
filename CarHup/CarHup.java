@@ -53,6 +53,7 @@ public class CarHup extends JFrame{
     private JPanelImage fondoPanel;
     private JButton acercaDe;
     private JButton acercaDe2;
+    
 
     
        
@@ -127,6 +128,8 @@ public class CarHup extends JFrame{
        this.setLocationRelativeTo(null);
        this.setIconImage(logoVna.getImage());   
        this.getContentPane().add(fondoPanel);
+       
+       
         norte();
         inicio();
     }
@@ -144,7 +147,7 @@ public class CarHup extends JFrame{
         JPanel panelBotones = new JPanel();
         panelBotones.setOpaque(false);
         panelBotones.setLayout(new FlowLayout(FlowLayout.LEFT, 35, 0));
-    
+        
         inicioButton.setContentAreaFilled(false);
         inicioButton.setFont(new Font("Aptos", Font.PLAIN, 18));
         inicioButton.setPreferredSize(new Dimension(100, 50));
@@ -166,6 +169,8 @@ public class CarHup extends JFrame{
         loginButton.setContentAreaFilled(false);
         loginButton.setFont(new Font("Aptos", Font.PLAIN, 18));
         panelBotones.add(loginButton);
+        
+
     
         norte.add(panelBotones);
         fondoPanel.add(norte, BorderLayout.NORTH);
@@ -361,10 +366,6 @@ public class CarHup extends JFrame{
         ventana2.revalidate();
         ventana2.repaint();
     }
-     
-    
-
-
     public void configuracion() {
         config.setLayout(null);
     
@@ -528,8 +529,6 @@ public class CarHup extends JFrame{
         fondoPanel.add(inicioP, BorderLayout.CENTER);
         fondoPanel.revalidate();
     }
-    
-    
     public void sugerencias(ConfiguracionModel addUsuario) {
         inicioP.removeAll();
         inicioP.setOpaque(false);
@@ -752,4 +751,6 @@ public class CarHup extends JFrame{
     }
 
 }
+
+
 
