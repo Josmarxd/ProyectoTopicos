@@ -103,4 +103,3 @@ public void actionPerformed(ActionEvent e) {
         ventana.getNorte().repaint();
     }
 }
-
