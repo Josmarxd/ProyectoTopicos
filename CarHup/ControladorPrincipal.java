@@ -69,7 +69,7 @@ public class ControladorPrincipal implements ActionListener{
        else if(e.getSource()== cuenta.getCrearCtaConductor()) addUsuarioC();
        else if(e.getSource()== cuenta.getAtras()) cuenta.login();
        else if(e.getSource()== cuenta.getLuego()){
-         cuenta.setVisible(false);
+         cuenta.dispose();
          CarHupControlle c = new CarHupControlle(addU);
        }else if(e.getSource() == cuenta.getBotonIniciarSesion()){
         char[] passwordChars = cuenta.getCampoContrasena().getPassword();
@@ -87,7 +87,7 @@ public class ControladorPrincipal implements ActionListener{
             if (usuario.getNombre().equals(nombreUsuario)) {
                 if (usuario.getPassaword().equals(contraseña)) {
                     if (usuario.getTieneCuenta() && usuario.getEsConductor()) {
-                        cuenta.setVisible(false);
+                        cuenta.dispose();
                         CarHupCControlle conductor = new CarHupCControlle(addU,nombreUsuario);
                     } else {
                         cuenta.getError().setText("La cuenta no es de un conductor");
@@ -112,7 +112,7 @@ public class ControladorPrincipal implements ActionListener{
             if (usuario.getNombre().equals(nombreUsuario)) {
                 if (usuario.getPassaword().equals(contraseña)) {
                     if (usuario.getTieneCuenta() && !usuario.getEsConductor()) {
-                        cuenta.setVisible(false);
+                        cuenta.dispose();
                         CarHupUControlle usuariox = new CarHupUControlle(addU,nombreUsuario);
                     } else {
                         cuenta.getError().setText("La cuenta no es de un Usuario");

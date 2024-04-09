@@ -72,15 +72,10 @@ public void actionPerformed(ActionEvent e) {
 }
 
 public void cerrarSesion(){
-    // Crear el JOptionPane
     int respuesta = JOptionPane.showConfirmDialog(null, "¿Deseas cerrar sesión?", "Cerrar Sesión", JOptionPane.YES_NO_OPTION);
-    
     if (respuesta == JOptionPane.YES_OPTION) {
         ventana.dispose();
         ControladorPrincipal n = new ControladorPrincipal(addU);
     }
 }
-
-
-
 }

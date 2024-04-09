@@ -96,7 +96,7 @@ public class CarHupU extends JFrame{
         resert = new JButton("Sugerencias");
     
         miInformacionButton = new JButton("Mi Información");
-        config = new JPanelImage("CarHup/Imagenes/Fondo1.jpg");
+        config = new JPanelImage("CarHup/Imagenes/Fondo1..jpg");
         logoVna = new ImageIcon("CarHup/Imagenes/Loficial2.png");
         btnSalir = new JButton("Atras");
         init();
@@ -621,19 +621,18 @@ public class CarHupU extends JFrame{
     public void eliminarReservacion(ConfiguracionModel addU, String nombreUsuario, int numero, String nombreConductor) {
         List<Usuario> listaUsuarios = addU.getListaUsuarios();
         for (Usuario usuario : listaUsuarios) {
-            if (usuario.getNombre().equals(nombreUsuario)) {
-                usuario.eliminarReserva(numero); // Llamada correcta al método eliminarReserva(int)
-                JOptionPane.showMessageDialog(null, "Reserva del usuario eliminada exitosamente.");
+            if (usuario.getNombre().equals(nombreConductor)) {
+                usuario.eliminarReserva(numero); // Elimina la reserva del conductor
+                // No es necesario eliminar al usuario asignado del conductor si es solo para la reserva
+                JOptionPane.showMessageDialog(null, "Reserva del conductor eliminada exitosamente.");
                 return;
             }
         }
     
-        
         for (Usuario usuario : listaUsuarios) {
-            if (usuario.getNombre().equals(nombreConductor)) {
-                usuario.eliminarReserva(numero);
-                usuario.eliminarUsuario(nombreUsuario);
-                JOptionPane.showMessageDialog(null, "Reserva del conductor eliminada exitosamente.");
+            if (usuario.getNombre().equals(nombreUsuario)) {
+                usuario.eliminarReserva(numero); // Elimina la reserva del usuario asignado
+                JOptionPane.showMessageDialog(null, "Reserva del usuario eliminada exitosamente.");
                 return;
             }
         }
