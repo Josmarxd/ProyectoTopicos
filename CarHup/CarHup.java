@@ -1,144 +1,106 @@
-import java.awt.*;
-import java.util.*;
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.Scene;
+import javafx.scene.web.WebView;
+
 import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 public class CarHup extends JFrame{
 
-    private JPanel buscador;
-    private JPanelImage panelImagenLogin;
-    private JPanel loginNorte;
-    private JDialog ventana2;
-    private JPanel norte;
     private ImageIcon logoVna;
-    private JButton iniciarSesionButton;
-    private JButton crearCuentaButton;
-    private JPanel loginCenterP;
-    private JButton botonIniciarSesion;
-    private JButton crearCtaConductor;
-    private JButton crearButton;
-    private JTextField campoUsuario;
-    private JPanel infFot;
-    private JTextField campoCorreo;
-    private JTextField campoTelefono;
-    private JTextField campoEstado;
-    private JTextField campoLocalidad;
-    private JTextField campoMunicipio;
-    private JTextField campoFechaNacimiento;
-    private JPasswordField campoContrasena;
-    private String sexoSeleccionado;
+    private JDialog ventana3;
+
+
+    private JLabel nombreJLabel;
+
+    private BotonImagen atras2;
+
+
+    private JPanel buscador;
+    private JDialog ventana2;
+    private JPanelImage norte;
     private JButton miInformacionButton;
     private JButton modoOscuroButton;
     private JPanelImage config;
     private JPanel inicioP;
-    private JScrollPane barraDesplazamiento;
     private JButton inicioButton;
     private BotonImagen buscarButton;
-    private ImageIcon buscarImagen;
     private BotonImagen loginButton;
-    private ImageIcon loginImagen;
     private JButton configuracionButton;
     private JLabel nombreCarHup;
     private JTextField buscarField;
-    private JLabel nombreLabel;
-    private JLabel numeroDeTelefonoLabel;
-    private JLabel correoLabel;
-    private JLabel edadLabel;
     private JButton llamarButton;
-    private JButton finalizarButton;
     private JButton resert;
     private JButton buscarCButton;
-    private JPanel informacioPanel;
-    private Color textoColorBlack;
-    private JPanelImage fondoPanel;
     private JButton acercaDe;
-
-    
+    private JPanelImage sugerenciaI;
+    private JPanel panelBotones;
+    private JButton misReservas;
+    private JButton reservar;
        
     public CarHup(String nombre) {
         super(nombre);
         buscador = new JPanel();
-        infFot = new JPanel();
         inicioP = new JPanel();
         inicioP.setOpaque(false);
+        misReservas = new JButton("Mis Reservas");
+        reservar = new JButton("Reservar");
+        nombreJLabel = new JLabel("Usuario");
+        ventana3 = new JDialog(this, "Sugerencias",true);
+        sugerenciaI= new JPanelImage("CarHup/Imagenes/FondoPanel.jpg");
+        atras2 = new BotonImagen("CarHup/Imagenes/Atras.png");
         resert = new JButton("actualizar");
-        loginNorte = new JPanel();
-        ventana2 = new JDialog(this, "VENTANA 2", true);
-        norte = new JPanel();
+        norte = new JPanelImage("CarHup/Imagenes/FondoPanel.jpg");
         nombreCarHup = new JLabel("CARHUP");
         inicioButton = new JButton("Inicio");
-    
-        buscarImagen = new ImageIcon("CarHup/Imagenes/Buscar.png");
-        buscarButton = new BotonImagen(buscarImagen);
-    
-        loginImagen = new ImageIcon("CarHup/Imagenes/Cuenta.png");
-        loginButton = new BotonImagen(loginImagen);
+        buscarButton = new BotonImagen("CarHup/Imagenes/Buscar.png");
+        loginButton = new BotonImagen("CarHup/Imagenes/Cuenta.png");
+        panelBotones = new JPanel();
         
         configuracionButton = new JButton("Configuración");
         modoOscuroButton = new JButton("Modo Oscuro");
         miInformacionButton = new JButton("Mi Información");
         logoVna = new ImageIcon("CarHup/Imagenes/Loficial.png");
         buscarCButton = new JButton("Buscar");
-        barraDesplazamiento = null;
-        textoColorBlack = Color.BLACK;
         acercaDe = new JButton("Sugerencias");
-        informacioPanel = new JPanel();
     
         // Buscar
-        nombreLabel = new JLabel("Usuario");
-        numeroDeTelefonoLabel = new JLabel("S/N");
         llamarButton = new JButton("Llamar");
         buscarField = new JTextField("Buscar");
         resert = new JButton("Sugerencias");
     
-        // Login
-        iniciarSesionButton = new JButton("Iniciar sesión");
-        crearCuentaButton = new JButton("Crear Cuenta");
-        loginCenterP = new JPanel();
-        botonIniciarSesion = new JButton("Iniciar Sesión");
-        crearCtaConductor = new JButton("Crear Cuenta conductor");
-        crearButton = new JButton("Crear");
-        campoTelefono = new JTextField();
-        campoEstado = new JTextField();
-        campoUsuario = new JTextField();
-        campoLocalidad = new JTextField();
-        campoMunicipio = new JTextField();
-        campoFechaNacimiento = new JTextField();
-        campoCorreo = new JTextField();
-        campoContrasena = new JPasswordField();
         miInformacionButton = new JButton("Mi Información");
         config = new JPanelImage("CarHup/Imagenes/Fondo1.jpg");
-        finalizarButton = new JButton("Finalizar");
-        fondoPanel = new JPanelImage("CarHup/Imagenes/Fondo.png");
-        panelImagenLogin = new JPanelImage("CarHup/Imagenes/Fondo.png");
+        logoVna = new ImageIcon("CarHup/Imagenes/Loficial2.png");
         init();
     }
     
 
 
-    private void init(){
+    public void init(){
        this.setVisible(true);
        this.setSize(900,900);
        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
        this.setLocationRelativeTo(null);
        this.setIconImage(logoVna.getImage());   
-       this.getContentPane().add(fondoPanel);
         norte();
-        inicio();
     }
 
-    private void norte() {
+
+    public void norte() {
         norte.setPreferredSize(new Dimension(800, 200));
         norte.setLayout(new FlowLayout(FlowLayout.LEFT, 200, 50));
-        norte.setOpaque(false);
     
         nombreCarHup.setFont(new Font("Aptos", Font.BOLD, 30));
-        nombreCarHup.setForeground(textoColorBlack);
+        nombreCarHup.setForeground(Color.WHITE);
     
-        norte.add(nombreCarHup);
-    
-        JPanel panelBotones = new JPanel();
         panelBotones.setOpaque(false);
         panelBotones.setLayout(new FlowLayout(FlowLayout.LEFT, 35, 0));
+
+        panelBotones.add(nombreCarHup);
     
         inicioButton.setContentAreaFilled(false);
         inicioButton.setFont(new Font("Aptos", Font.PLAIN, 18));
@@ -149,11 +111,11 @@ public class CarHup extends JFrame{
         configuracionButton.setFont(new Font("Aptos", Font.PLAIN, 18));
         configuracionButton.setPreferredSize(new Dimension(150, 50));
         panelBotones.add(configuracionButton);
-    
-        resert.setContentAreaFilled(false);
-        resert.setFont(new Font("Aptos", Font.PLAIN, 18));
-        panelBotones.add(resert);
-    
+
+        misReservas.setContentAreaFilled(false);
+        misReservas.setFont(new Font("Aptos", Font.PLAIN, 18));
+        panelBotones.add(misReservas);
+        
         buscarButton.setContentAreaFilled(false);
         buscarButton.setFont(new Font("Aptos", Font.PLAIN, 18));
         panelBotones.add(buscarButton);
@@ -161,205 +123,34 @@ public class CarHup extends JFrame{
         loginButton.setContentAreaFilled(false);
         loginButton.setFont(new Font("Aptos", Font.PLAIN, 18));
         panelBotones.add(loginButton);
-    
-        norte.add(panelBotones);
-        fondoPanel.add(norte, BorderLayout.NORTH);
-    }
-    
-    public void login() {
-        ventana2.setSize(400, 500);
-        ventana2.setTitle("Iniciar sesión o Crear Cuenta");
-        ventana2.setIconImage(logoVna.getImage());
-    
-        panelImagenLogin.setLayout(new BorderLayout());
-    
-        loginNorte.removeAll();
-    
-        loginCenterP.setBorder(BorderFactory.createEtchedBorder());
-    
-        loginNorte.setPreferredSize(new Dimension(400, 140));
-        loginNorte.setOpaque(false);
-    
-        JLabel inicioCrear = new JLabel("¿Eres nuevo o ya tienes una cuenta?");
-        inicioCrear.setFont(new Font("Times New Roman", Font.BOLD, 23));
-        inicioCrear.setForeground(Color.BLACK);
-        loginNorte.add(inicioCrear);
-    
-        JLabel loginImagen = new JLabel(new ImageIcon(logoVna.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH)));
-        loginNorte.add(loginImagen);
-    
-        iniciarSesionButton.setPreferredSize(new Dimension(120, 30));
-        iniciarSesionButton.setForeground(Color.BLACK); // Letras blancas
-        iniciarSesionButton.setContentAreaFilled(false);
-        loginNorte.add(iniciarSesionButton);
-        loginNorte.setBorder(BorderFactory.createEtchedBorder());
-    
-        crearCuentaButton.setPreferredSize(new Dimension(120, 30));
-        crearCuentaButton.setForeground(Color.BLACK); // Letras blancas
-        crearCuentaButton.setContentAreaFilled(false);
-        loginNorte.add(crearCuentaButton);
-    
-        panelImagenLogin.add(loginNorte, BorderLayout.NORTH);
-        ventana2.setLocationRelativeTo(null);
-        ventana2.getContentPane().add(panelImagenLogin);
-        ventana2.setVisible(true);
-    
-        ventana2.revalidate();
-        ventana2.repaint();
-    }
-    
 
-
-
-    public void iniciarSesion() {
-        loginCenterP.removeAll();
-        loginCenterP.setOpaque(false);
+        nombreJLabel.setFont(new Font("Aptos", Font.BOLD, 30));
+        nombreJLabel.setForeground(Color.WHITE);
         
-        JLabel iniciarSesionLabel = new JLabel("Inicia sesión");
-        iniciarSesionLabel.setFont(new Font("Times New Roman", Font.BOLD, 20));
-        iniciarSesionLabel.setForeground(Color.BLACK);
-        loginCenterP.add(iniciarSesionLabel, BorderLayout.NORTH);
-    
-        JPanel formularioPanel = new JPanel();
-        formularioPanel.setLayout(new GridLayout(2, 2, 10, 10));
-        formularioPanel.setOpaque(false);
-    
-        JLabel etiquetaNombreUsuario = new JLabel("Nombre de Usuario:");
-        etiquetaNombreUsuario.setFont(new Font("Times New Roman", Font.BOLD, 14));
-        etiquetaNombreUsuario.setForeground(Color.BLACK);
-    
-        campoUsuario.setPreferredSize(new Dimension(150, 25));
-    
-        JLabel etiquetaContrasena = new JLabel("Contraseña:");
-        etiquetaContrasena.setFont(new Font("Times New Roman", Font.BOLD, 14));
-        etiquetaContrasena.setForeground(Color.BLACK);
-    
-        campoContrasena.setPreferredSize(new Dimension(150, 25));
-    
-        formularioPanel.add(etiquetaNombreUsuario);
-        formularioPanel.add(campoUsuario);
-        formularioPanel.add(etiquetaContrasena);
-        formularioPanel.add(campoContrasena);
-    
-        loginCenterP.add(formularioPanel, BorderLayout.CENTER); 
-    
-        botonIniciarSesion.setForeground(Color.BLACK); 
-        botonIniciarSesion.setContentAreaFilled(false);
-        loginCenterP.add(botonIniciarSesion, BorderLayout.SOUTH); 
-        panelImagenLogin.add(loginCenterP, BorderLayout.CENTER);
-        ventana2.revalidate();
-        ventana2.repaint();
+        panelBotones.add(nombreJLabel);
+        norte.setLayout(new BorderLayout());
+        norte.add(panelBotones, BorderLayout.NORTH);
+
+        JFXPanel jfxPanel = new JFXPanel();
+        Platform.runLater(() -> {
+            WebView webView = new WebView();
+            webView.getEngine().load("https://www.google.com/maps");
+
+            Scene scene = new Scene(webView);
+            jfxPanel.setScene(scene);
+            norte.add(jfxPanel,BorderLayout.CENTER);
+        });
+        
+        getContentPane().add(norte);
     }
     
-    public void crearCuenta() {
-        loginCenterP.removeAll();
-        loginCenterP.setOpaque(false);
     
-        JLabel crearCuentaLabel = new JLabel("Crear Cuenta");
-        crearCuentaLabel.setFont(new Font("Times New Roman", Font.BOLD, 20));
-        crearCuentaLabel.setForeground(Color.BLACK);
-        loginCenterP.add(crearCuentaLabel, BorderLayout.NORTH);
-    
-        JPanel formularioPanel = new JPanel(new GridLayout(0, 2, 5, 5));
-        formularioPanel.setOpaque(false);
-    
-        JLabel nombreDeUsuario = new JLabel("Nombre de usuario:");
-        nombreDeUsuario.setFont(new Font("Times New Roman", Font.BOLD, 14));
-        nombreDeUsuario.setForeground(Color.BLACK);
-    
-        JLabel fechaNacimientoLabel = new JLabel("Fecha de Nacimiento:");
-        fechaNacimientoLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
-        fechaNacimientoLabel.setForeground(Color.BLACK);
-    
-        JLabel sexoLabel = new JLabel("Sexo:");
-        sexoLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
-        sexoLabel.setForeground(Color.BLACK);
-        String[] opcionesSexo = {"Hombre", "Mujer"};
-        JComboBox<String> comboBoxSexo = new JComboBox<>(opcionesSexo);
-        sexoSeleccionado = (String) comboBoxSexo.getSelectedItem();
-    
-        JLabel correoLabel = new JLabel("Correo Electrónico:");
-        correoLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
-        correoLabel.setForeground(Color.BLACK);
-    
-        JLabel contrasenaLabel = new JLabel("Contraseña:");
-        contrasenaLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
-        contrasenaLabel.setForeground(Color.BLACK);
-    
-        crearCtaConductor.setForeground(Color.BLACK);
-        crearCtaConductor.setContentAreaFilled(false);
-    
-        crearButton.setForeground(Color.BLACK);
-        crearButton.setContentAreaFilled(false);
-    
-        formularioPanel.add(nombreDeUsuario);
-        formularioPanel.add(campoUsuario);
-        formularioPanel.add(fechaNacimientoLabel);
-        formularioPanel.add(campoFechaNacimiento);
-        formularioPanel.add(sexoLabel);
-        formularioPanel.add(comboBoxSexo);
-        formularioPanel.add(correoLabel);
-        formularioPanel.add(campoCorreo);
-        formularioPanel.add(contrasenaLabel);
-        formularioPanel.add(campoContrasena);
-        formularioPanel.add(crearCtaConductor);
-        formularioPanel.add(crearButton);
-    
-        loginCenterP.add(formularioPanel, BorderLayout.CENTER);
-        panelImagenLogin.add(loginCenterP, BorderLayout.CENTER);
-        ventana2.revalidate();
-        ventana2.repaint();
+    public void eliminarPanelAnterior1(JPanel panelAnterior) {
+        ventana3.remove(panelAnterior);
+        ventana3.revalidate();
+        ventana3.repaint();
     }
     
-
-
-
-    public void crearCuentaConductor() {
-        loginCenterP.removeAll();
-        loginCenterP.setOpaque(false);
-    
-        JLabel graciasLabel = new JLabel("<html>¡GRACIAS por unirte!<br>Ahora necesitamos más información:</html>");
-        graciasLabel.setFont(new Font("Times New Roman", Font.BOLD, 15));
-        graciasLabel.setForeground(Color.BLACK);
-        loginCenterP.add(graciasLabel, BorderLayout.NORTH);
-    
-        JPanel formularioPanel = new JPanel(new GridLayout(0, 2, 30, 20));
-        formularioPanel.setOpaque(false);
-    
-        JLabel telefonoLabel = new JLabel("Número de Teléfono:");
-        telefonoLabel.setForeground(Color.BLACK);
-        formularioPanel.add(telefonoLabel);
-        formularioPanel.add(campoTelefono);
-    
-        JLabel estadoLabel = new JLabel("Estado:");
-        estadoLabel.setForeground(Color.BLACK);
-        formularioPanel.add(estadoLabel);
-        formularioPanel.add(campoEstado);
-    
-        JLabel municipioLabel = new JLabel("Municipio:");
-        municipioLabel.setForeground(Color.BLACK);
-        formularioPanel.add(municipioLabel);
-        formularioPanel.add(campoMunicipio);
-    
-        JLabel localidadLabel = new JLabel("Localidad:");
-        localidadLabel.setForeground(Color.BLACK);
-        formularioPanel.add(localidadLabel);
-        formularioPanel.add(campoLocalidad);
-    
-        finalizarButton.setForeground(Color.BLACK);
-        finalizarButton.setContentAreaFilled(false);
-        formularioPanel.add(finalizarButton);
-    
-        loginCenterP.add(formularioPanel, BorderLayout.CENTER);
-        panelImagenLogin.add(loginCenterP, BorderLayout.CENTER);
-    
-        ventana2.revalidate();
-        ventana2.repaint();
-    }
-     
-    
-
-
     public void configuracion() {
         config.setLayout(null);
     
@@ -409,43 +200,61 @@ public class CarHup extends JFrame{
     }
     
 
+    public void abrirTerceraVentana() {
+        actualizarContenidoVentana();
+        ventana3.setTitle("Buscar Y Sugerencias");
+        ventana3.setModal(true);
+        ventana3.setSize(600, 650);
+        
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int xPosition = screenSize.width - ventana3.getWidth();
+        int yPosition = screenSize.height / 8;
+        ventana3.setLocation(xPosition, yPosition);
+    
+        ventana3.setResizable(false);
+        ventana3.setUndecorated(true);
+        ventana3.setVisible(true);
+    }
+    
 
+    JPanel buscador2 = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 0));
+    private void actualizarContenidoVentana() {
+        buscador2.removeAll();
 
-
-    public void modoOscuro(){
-     //METODO PARA EL MODO OSCURO
-   }
-    public void miInformacion(){
-        //METODO PARA INFORMACION
+        buscarField.setPreferredSize(new Dimension(200,25));
+        buscarCButton.setPreferredSize(new Dimension(100,25));
+        buscarCButton.setContentAreaFilled(false);
+        resert.setContentAreaFilled(false);
+        resert.setFont(new Font("Aptos", Font.PLAIN, 18));
+        buscador2.add(atras2);
+        buscador2.add(buscarField);
+        buscador2.add(buscarCButton);
+        buscador2.add(resert);
+    
+        buscador2.setBackground(Color.cyan);
+        ventana3.add(buscador2, BorderLayout.NORTH);
     }
 
 
     public void buscar(String nombreConductor, ConfiguracionModel addUsuario) {
+        sugerenciaI.removeAll();
         
-        inicioP.removeAll();
-        inicioP.setOpaque(false);
-    
-        Font fuenteEtiqueta = new Font("Times New Roman", Font.BOLD, 14);
-        Color colorTexto = Color.WHITE; 
-    
         List<Usuario> listaUsuarios = addUsuario.getListaUsuarios();
-    
-
         Usuario conductorEncontrado = null;
+        
         for (Usuario usuario : listaUsuarios) {
-            if (usuario.getNombre().equals(nombreConductor)) {
+            if (usuario.getNombre().equals(nombreConductor) && usuario.getEsConductor() == true) {
                 conductorEncontrado = usuario;
                 break;
             }
         }
-    
+        
         if (conductorEncontrado != null) {
             JPanelImage usuarioPanel = new JPanelImage("CarHup/Imagenes/Fondo1.jpg");
-            
             usuarioPanel.setLayout(new GridLayout(1, 2));
-
+    
             JPanelImage fotoPanel = new JPanelImage("CarHup/Imagenes/Fondo1.jpg");
-            fotoPanel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+            fotoPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
     
             JLabel fotoLabel = new JLabel();
             fotoPanel.add(fotoLabel);
@@ -453,6 +262,9 @@ public class CarHup extends JFrame{
             JPanel descripcionPanel = new JPanel();
             descripcionPanel.setOpaque(false);
             descripcionPanel.setLayout(new GridLayout(4, 1));
+    
+            Font fuenteEtiqueta = new Font("Times New Roman", Font.BOLD, 14);
+            Color colorTexto = Color.WHITE;
     
             JLabel nombreLabel = new JLabel("Nombre: " + conductorEncontrado.getNombre());
             nombreLabel.setFont(fuenteEtiqueta);
@@ -469,79 +281,57 @@ public class CarHup extends JFrame{
             correoLabel.setForeground(colorTexto);
             descripcionPanel.add(correoLabel);
     
-            JButton llamarButton = new JButton("Llamar");
-            llamarButton.setForeground(Color.WHITE);
-            llamarButton.setBackground(Color.BLACK);
+            
+            reservar.setForeground(Color.WHITE);
+            reservar.setBackground(Color.BLACK);
     
-            descripcionPanel.add(llamarButton);
+            descripcionPanel.add(reservar);
             usuarioPanel.add(fotoPanel);
             usuarioPanel.add(descripcionPanel);
-            usuarioPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-            inicioP.add(usuarioPanel);
-    
-            if (barraDesplazamiento == null) {
-                barraDesplazamiento = new JScrollPane(inicioP);
-                barraDesplazamiento.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-                barraDesplazamiento.setOpaque(false);
-                barraDesplazamiento.getViewport().setOpaque(false); 
-                fondoPanel.add(barraDesplazamiento, BorderLayout.CENTER);
-            } else {
-               
-                barraDesplazamiento.setViewportView(inicioP);
-            }
-    
-            fondoPanel.revalidate();
+            usuarioPanel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+            sugerenciaI.add(usuarioPanel);
+            
+
+            ventana3.add(sugerenciaI, BorderLayout.CENTER);
+        } else {
+            // Mostrar mensaje de que no se encontró ningún conductor
+            JLabel mensajeLabel = new JLabel("No se encontró ningún conductor con el nombre especificado.");
+            sugerenciaI.add(mensajeLabel);
+            ventana3.add(sugerenciaI, BorderLayout.CENTER);
         }
+        
+        ventana3.revalidate();
     }
     
     
+    
 
-
-    public void inicio() {
-        inicioP.removeAll();
-        inicioP.setOpaque(false);
-    
-        JPanel principal = new JPanel();
-        principal.setLayout(new FlowLayout(FlowLayout.CENTER)); 
-        principal.setOpaque(false);
-    
-        JLabel tituloGrande = new JLabel("La movilidad del Futuro llegó");
-        tituloGrande.setFont(new Font("Arial", Font.BOLD, 65));
-        tituloGrande.setForeground(Color.BLACK);
-        principal.add(tituloGrande);
-    
-        JLabel tituloMediano = new JLabel("La experiencia de autoconductor más seguro con Car Hup");
-        tituloMediano.setFont(new Font("Arial", Font.BOLD, 35));
-        tituloMediano.setForeground(Color.BLACK);
-        principal.add(tituloMediano);
-    
-        inicioP.setLayout(new BorderLayout());
-        inicioP.add(principal, BorderLayout.CENTER);
-    
-        fondoPanel.setOpaque(false);
-        fondoPanel.setBackground(new Color(0, 0, 0));
-        fondoPanel.add(inicioP, BorderLayout.CENTER);
-        fondoPanel.revalidate();
-    }
-    
-    
     public void sugerencias(ConfiguracionModel addUsuario) {
-        inicioP.removeAll();
-        inicioP.setOpaque(false);
-    
+        sugerenciaI.removeAll();
         Font fuenteEtiqueta = new Font("Times New Roman", Font.BOLD, 14);
-        Color colorTexto = Color.WHITE; 
+        Color colorTexto = Color.WHITE;
     
         List<Usuario> listaUsuarios = addUsuario.getListaUsuarios();
     
-        inicioP.setLayout(new GridLayout(listaUsuarios.size(), 2));
-    
-        Collections.shuffle(listaUsuarios);
+        List<Usuario> conductoresDisponibles = new ArrayList<>();
         for (Usuario usuario : listaUsuarios) {
             if (usuario.getEsConductor()) {
+                conductoresDisponibles.add(usuario);
+            }
+        }
+    
+
+        if (!conductoresDisponibles.isEmpty()) {
+            Collections.shuffle(conductoresDisponibles);
+            
+
+            int numSugerencias = Math.min(conductoresDisponibles.size(), 5); // Por ejemplo, mostraremos hasta 5 sugerencias
+            for (int i = 0; i < numSugerencias; i++) {
+                Usuario conductor = conductoresDisponibles.get(i);
+                
                 JPanelImage usuarioPanel = new JPanelImage("CarHup/Imagenes/Fondo1.jpg");
                 usuarioPanel.setLayout(new GridLayout(1, 2));
-
+    
                 JPanelImage fotoPanel = new JPanelImage("CarHup/Imagenes/Fondo1.jpg");
                 fotoPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
     
@@ -552,90 +342,52 @@ public class CarHup extends JFrame{
                 descripcionPanel.setOpaque(false);
                 descripcionPanel.setLayout(new GridLayout(4, 1));
     
-                JLabel nombreLabel = new JLabel("Nombre: " + usuario.getNombre());
+                JLabel nombreLabel = new JLabel("Nombre: " + conductor.getNombre());
                 nombreLabel.setFont(fuenteEtiqueta);
                 nombreLabel.setForeground(colorTexto);
                 descripcionPanel.add(nombreLabel);
     
-                JLabel fechaNacimientoLabel = new JLabel("Fecha de Nacimiento: " + usuario.getFechaNacimiento());
+                JLabel fechaNacimientoLabel = new JLabel("Fecha de Nacimiento: " + conductor.getFechaNacimiento());
                 fechaNacimientoLabel.setFont(fuenteEtiqueta);
                 fechaNacimientoLabel.setForeground(colorTexto);
                 descripcionPanel.add(fechaNacimientoLabel);
     
-                JLabel correoLabel = new JLabel("Correo: " + usuario.getCorreo());
+                JLabel correoLabel = new JLabel("Correo: " + conductor.getCorreo());
                 correoLabel.setFont(fuenteEtiqueta);
                 correoLabel.setForeground(colorTexto);
                 descripcionPanel.add(correoLabel);
     
-                JButton llamarButton = new JButton("Llamar");
-                llamarButton.setForeground(Color.WHITE);
-                llamarButton.setBackground(Color.BLACK);
+                
+                reservar.setForeground(Color.WHITE);
+                reservar.setBackground(Color.BLACK);
     
-                descripcionPanel.add(llamarButton);
+                descripcionPanel.add(reservar);
                 usuarioPanel.add(fotoPanel);
                 usuarioPanel.add(descripcionPanel);
                 usuarioPanel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
-                inicioP.add(usuarioPanel);
+                sugerenciaI.add(usuarioPanel);
+                ventana3.add(sugerenciaI, BorderLayout.CENTER);
             }
-        }
-    
-
-        if (barraDesplazamiento == null) {
-            barraDesplazamiento = new JScrollPane(inicioP);
-            barraDesplazamiento.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-            barraDesplazamiento.setOpaque(false); 
-            barraDesplazamiento.getViewport().setOpaque(false); 
-    
-            fondoPanel.add(barraDesplazamiento, BorderLayout.CENTER);
         } else {
-            barraDesplazamiento.setViewportView(inicioP);
+            JLabel mensajeLabel = new JLabel("No hay conductores disponibles para mostrar sugerencias.");
+            sugerenciaI.add(mensajeLabel);
+            ventana3.add(sugerenciaI, BorderLayout.CENTER);
         }
-        fondoPanel.revalidate();
+        ventana3.revalidate();
     }
     
-
-    public void setNombreLabel(JLabel nombreLabel) {
-        this.nombreLabel = nombreLabel;
-    }
-
-    public void setNumeroDeTelefonoLabel(JLabel numeroDeTelefonoLabel) {
-        this.numeroDeTelefonoLabel = numeroDeTelefonoLabel;
-    }
-
 
     public JButton getLlamarButton() {
         return llamarButton;
     }
-
-    public JLabel getNombreLabel() {
-        return nombreLabel;
-    }
-
-    public JLabel getNumeroDeTelefonoLabel() {
-        return numeroDeTelefonoLabel;
-    }
-
   
     public JTextField getBuscarField() {
         return buscarField;
     }
 
 
-    public JLabel getCorreoLabel() {
-        return correoLabel;
-    }
-
-    public void setEdadLabel(JLabel edadLabel) {
-        this.edadLabel = edadLabel;
-    }
-
-    public JTextField getCampoCorreo() {
-        return campoCorreo;
-    }
-
-
-    public JLabel getEdadLabel() {
-        return edadLabel;
+    public JButton getReservar() {
+        return reservar;
     }
 
 
@@ -643,8 +395,10 @@ public class CarHup extends JFrame{
         return resert;
     }
 
-    public String getSexoSeleccionado() {
-        return sexoSeleccionado;
+
+
+    public JPanel getPanelBotones() {
+        return panelBotones;
     }
 
 
@@ -655,6 +409,7 @@ public class CarHup extends JFrame{
     public JButton getBuscarButton() {
         return buscarButton;
     }
+    
 
     public JButton getLoginButton() {
         return loginButton;
@@ -664,24 +419,15 @@ public class CarHup extends JFrame{
         return configuracionButton;
     }
 
-   public JButton getIniciarSesionButton() {
-       return iniciarSesionButton;
-   }
 
-   public JButton getBotonIniciarSesion() {
-       return botonIniciarSesion;
-   }
+    public JLabel getNombreJLabel() {
+        return nombreJLabel;
+    }
 
-   public JButton getCrearCuentaButton() {
-       return crearCuentaButton;
-   }
+   
 
-   public JButton getFinalizarButton() {
-       return finalizarButton;
-   }
-
-   public JButton getCrearCtaConductor() {
-       return crearCtaConductor;
+   public JDialog getVentana3() {
+       return ventana3;
    }
 
    public JButton getMiInformacionButton() {
@@ -692,58 +438,29 @@ public class CarHup extends JFrame{
        return norte;
    }
 
-
-   public JButton getModoOscuroButton() {
-       return modoOscuroButton;
-   }
-
-   public JButton getCrearButton() {
-       return crearButton;
-   }
-
-   public JTextField getCampoTelefono() {
-       return campoTelefono;
-   }
-
    public JButton getBuscarCButton() {
-       return buscarCButton;
+    return buscarCButton;
    }
 
-   public JTextField getCampoUsuario() {
-       return campoUsuario;
-   }
-
-   public JTextField getCampoFechaNacimiento() {
-       return campoFechaNacimiento;
+  
+   public BotonImagen getAtras2() {
+       return atras2;
    }
 
 
-   public JPasswordField getCampoContrasena() {
-       return campoContrasena;
-   }
-
-
-   public JTextField getCampoEstado() {
-       return campoEstado;
-   }
-
-
-
-   public JTextField getCampoLocalidad() {
-       return campoLocalidad;
-   }
-
-
-    public JTextField getCampoMunicipio() {
-        return campoMunicipio;
-    }
 
     public JPanel getBuscador() {
         return buscador;
     }
+   
 
-    public static void main(String[] args) {
-        CarHupControlle c = new CarHupControlle();
+    public JDialog getVentana2() {
+        return ventana2;
+    }
+
+
+    public JButton getMisReservas() {
+        return misReservas;
     }
 }
 

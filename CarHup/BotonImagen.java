@@ -5,8 +5,8 @@ public class BotonImagen extends JButton {
 
     private ImageIcon imagenIcono;
 
-    public BotonImagen(ImageIcon imagenIcono) {
-        this.imagenIcono = imagenIcono;
+    public BotonImagen(String ruta) {
+        imagenIcono = new ImageIcon(ruta);
         setPreferredSize(new Dimension(imagenIcono.getIconWidth()/7, imagenIcono.getIconHeight()/7)); // Tamaño del botón según el tamaño de la imagen
         setContentAreaFilled(false);
         setBorderPainted(false);
